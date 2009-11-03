@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   helper_method :current_user
+  helper_method :page_title
 
 private
 
@@ -16,4 +17,11 @@ private
     @current_user = current_user_session && current_user_session.record
   end
 
+  def page_title(new_title = nil)
+    unless new_title.nil?
+      @page_title = new_title
+    else
+      @page_title
+    end
+  end
 end

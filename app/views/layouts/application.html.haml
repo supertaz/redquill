@@ -2,7 +2,11 @@
 !!!
 %html
   %head
-    %title DEFAULT TEMPLATE - FILL ME IN!
+    %title
+      -unless @page_title.nil?
+        "#{DEFAULT_TITLE} - #{@page_title}"
+      - else
+        "#{DEFAULT_TITLE}"
     %link{ :rel=>'shortcut icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %link{ :rel=>'icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %meta{ :name=>'keywords', :content=>'' }

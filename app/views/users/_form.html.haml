@@ -1,7 +1,19 @@
 - form_for @user do |f|
   = f.error_messages
   %p
-    = f.label :email
+    = f.label :firstname, "First name (private)"
+    %br
+    = f.text_field :firstname
+  %p
+    = f.label :lastname, "Last name (private)"
+    %br
+    = f.text_field :lastname
+  %p
+    = f.label :nickname, "Nickname (public)"
+    %br
+    = f.text_field :nickname
+  %p
+    = f.label :email, "Email (private)"
     %br
     = f.text_field :email
   %p
