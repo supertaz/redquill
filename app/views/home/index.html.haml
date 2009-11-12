@@ -1,60 +1,209 @@
 #content
   .nest
-    %h1 Home#index
-    %p Find me in app/views/home/index.html.haml
-    .boxes
-      %h6 You will probably want to comment out the @include 'partials/color_boxes.sass' after setting the color scheme.
-      .boxcol
-        .colbox_base
-          %h2 Base Colors
-        .colbox_lightest_base
-          lightest_base
-        .colbox_lighter_base
-          lighter_base
-        .colbox_light_base
-          light_base
-        .colbox_base
-          base
-        .colbox_dark_base
-          dark_base
-        .colbox_darker_base
-          darker_base
-        .colbox_darkest_base
-          darkest_base
-      .boxcol
-        .colbox_support
-          %h2 Support Colors
-        .colbox_lightest_support
-          lightest_support
-        .colbox_lighter_support
-          lighter_support
-        .colbox_light_support
-          light_support
-        .colbox_support
-          support
-        .colbox_dark_support
-          dark_support
-        .colbox_darker_support
-          darker_support
-        .colbox_darkest_support
-          darkest_support
-      .boxcol
-        .colbox_accent
-          %h2 Accent Colors
-        .colbox_lightest_accent
-          lightest_accent
-        .colbox_lighter_accent
-          lighter_accent
-        .colbox_light_accent
-          light_accent
-        .colbox_accent
-          accent
-        .colbox_dark_accent
-          dark_accent
-        .colbox_darker_accent
-          darker_accent
-        .colbox_darkest_accent
-          darkest_accent
+    .secttitle
+      Latest Words
+      %span of potentially great wisdom
+    .clear
+    .post
+      .posthead
+        .title
+          %a{:href=>'#'}
+            In which I discuss stuff
+        .datetime
+          .date
+            September 30, 2009
+          .time
+            at 21:30
+      .postbody
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
+        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus.
+      .postfoot
+        .left
+          %a{:href => '#'}
+            tweet
+          |
+          %a{:href=>'#'}
+            email
+          |
+          %a{:href=>'#'}
+            comment
+        .right
+          %a{:href => '#comments'}
+            5 comments
+          (last comment at 11 November 2009 at 22:17)
+    .post
+      .posthead
+        .title
+          %a{:href=>'#'}
+            In which I discuss more stuff
+        .datetime
+          .date
+            September 30, 2009
+          .time
+            at 21:30
+      .postbody
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
+        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci.
+      .postfoot
+        .left
+          %a{:href => '#'}
+            tweet
+          |
+          %a{:href=>'#'}
+            email
+          |
+          %a{:href=>'#'}
+            comment
+        .right
+          %a{:href => '#comments'}
+            5 comments
+          (last comment at 11 November 2009 at 22:17)
+    .post
+      .posthead
+        .title
+          %a{:href=>'#'}
+            In which I discuss a lot more stuff, requiring a much longer title and a "read more" link
+        .datetime
+          .date
+            September 30, 2009
+          .time
+            at 21:30
+      .postbody
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
+        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
+        %span
+          %a{:href=>'#'}read more
+      .postfoot
+        .left
+          %a{:href => '#'}
+            tweet
+          |
+          %a{:href=>'#'}
+            email
+          |
+          %a{:href=>'#'}
+            read more and comment
+        .right
+          %a{:href => '#comments'}
+            5 comments
+          (last comment at 11 November 2009 at 22:17)
+    .comments
+      %a{:name=>'comments'}
+      .comment
+        .commenthead
+          .id
+            Comment
+            %br
+            No. 1
+          .title
+            This is a ridiculously long comment title. Who actually needs to say this much in a title?
+          .metadata
+            .date
+              November 11, 2009
+            .time
+              at 21:30
+            .commenter
+              by
+              %a{:href=>'#'}Some random guy
+        .commentbody
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare mi eget mi imperdiet varius. Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
+        .commentfoot
+          .left
+            3 people agree
+            |
+            1 person disagrees
+            |
+            shared 123456 times
+          .right
+            %a{:href => '#'}
+              tweet
+            |
+            %a{:href=>'#'}
+              email
+            |
+            %a{:href=>'#'}
+              reply
+            |
+            %a{:href=>'#'}
+              agree
+            |
+            %a{:href=>'#'}
+              disagree
+      .comment
+        .commenthead
+          .id
+            Comment
+            %br
+            No. 2
+          .title
+            Just a short comment title
+          .metadata
+            .date
+              November 11, 2009
+            .time
+              at 21:30
+            .commenter
+              by
+              %a{:href=>'#'}Some random guy
+        .commentbody
+          %p.reply In reply to comment no. 1:
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare mi eget mi imperdiet varius. Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
+        .commentfoot
+          .left
+            3 people agree
+            |
+            1 person disagrees
+            |
+            shared 123456 times
+          .right
+            %a{:href => '#'}
+              tweet
+            |
+            %a{:href=>'#'}
+              email
+            |
+            %a{:href=>'#'}
+              reply
+            |
+            %a{:href=>'#'}
+              agree
+            |
+            %a{:href=>'#'}
+              disagree
 #sidebar
   .nest
-    Default Sidebar (right side)
+    .section
+      .secthead
+        Navigation
+      .sectbody
+        %p
+          %a{:href=>'#'}Latest Entries
+        %p
+          %a{:href=>'#'}
+            Who
+            %i
+              %b is
+            this guy?
+        %p
+          %a{:href=>'#'}Contact Me
+    .section
+      .secthead
+        Archive
+      .sectbody
+        A historical archive goes here
+    .section
+      .secthead
+        Tags
+      .sectbody
+        A tag cloud goes here
+    .section
+      .secthead
+        Recent Tweets
+      .sectbody
+        %p A recent tweet
+        %p.tweet Another recent tweet
+        %p.tweet A longer tweet about how great OAuth is and how much we like social media and Twitter and such
+        %p.tweet Tweet.

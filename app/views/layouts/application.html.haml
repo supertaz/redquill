@@ -4,9 +4,9 @@
   %head
     %title
       -unless @page_title.nil?
-        "#{DEFAULT_TITLE} - #{@page_title}"
+        #{DEFAULT_TITLE} - #{@page_title}
       - else
-        "#{DEFAULT_TITLE}"
+        #{DEFAULT_TITLE}
     %link{ :rel=>'shortcut icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %link{ :rel=>'icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %meta{ :name=>'keywords', :content=>'' }
@@ -20,7 +20,9 @@
       #header
         #identityarea
           .nest
-            %h2 This is the identity area of the default layout
+            %h1
+              ="<span class='titlecolor'>Dev</span>Koans"
+            .tagline A thought-provoking blog of things I know might be true
         #usernav
           -if current_user
             =link_to "Edit Profile", edit_user_path(:current)
@@ -34,4 +36,4 @@
         =yield
       #footer
         .nest
-          %h1 This is the footer area of the default layout
+          Design and all contents of this website &copy; 2009#{DateTime::now().year == 2009 ? '' : " - #{DateTime::now().year}"} Jonathan D. Mischo  All rights reserved.
