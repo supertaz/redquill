@@ -27,7 +27,7 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic-oid', :lib => 'authlogic_openid', :version => '>=1.0.4'
   config.gem 'authlogic-oauth', :lib => 'authlogic_oauth', :version => '>=1.0.8'
 
-  config.time_zone = 'UTC'
+  config.time_zone = 'Central Time (US & Canada)'
 
   config.active_record.observers = :user_observer
 

@@ -28,7 +28,7 @@ body.styled
     :height 6em
     :border-bottom 3px double #ccc
   #identityarea
-    +column(!blueprint_grid_columns - 5)
+    +column(!blueprint_grid_columns - 6)
     :margin-top 5px
     :text-align left
     h1
@@ -42,7 +42,7 @@ body.styled
       :color #666
       :padding-left .25em
   #usernav
-    +column(5, true)
+    +column(6, true)
     +rounded-bottom(5px)
     :background-color = !usernav_background_color
     :text-align center
@@ -167,15 +167,20 @@ body.styled
         :color #666
         :text-align right
         :font-size .9em
-        a
-          :color = !darker_accent_color
-          +no_dec
         .left
           +column(7)
           :text-align left
         .right
           +column(9,true)
           :text-align right
+        a.auth
+          :color = !darker_support_color
+          +no_dec
+        a
+          :color = !darker_accent_color
+          +no_dec
+        span
+          :color = !darker_base_color
     .comments
       +column(16)
       :padding-left 3em
@@ -240,15 +245,20 @@ body.styled
           :margin-bottom 5px
           :color #666
           :font-size .9em
+          a.auth
+            :color = !darker_support_color
+            +no_dec
           a
             :color = !darker_accent_color
             +no_dec
           .left
-            +column(9)
+            +column(8)
             :text-align left
           .right
-            +column(6,true)
+            +column(7,true)
             :text-align right
+          span
+            :color = !darker_base_color
   .nest
     +safe_padding
     +rounded(5px)
