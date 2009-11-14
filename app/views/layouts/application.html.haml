@@ -33,7 +33,13 @@
             %i or
             =link_to "Create an Account", new_user_path
       #livearea
-        =yield
+        #content
+          .nest
+            =yield
+        #sidebar
+          .nest
+            -unless @skip_sidebar == true
+              =render :partial => 'common/sidebar'
       #footer
         .nest
           Design and all contents of this website &copy; 2009#{DateTime::now().year == 2009 ? '' : " - #{DateTime::now().year}"} Jonathan D. Mischo  All rights reserved.

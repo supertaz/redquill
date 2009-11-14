@@ -2,6 +2,7 @@ class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
+    @skip_sidebar = true
   end
 
   def create

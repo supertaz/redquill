@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
   map.login 'login', :controller => 'user_sessions', :action => 'new'
+  map.bio 'bio', :controller => 'bio', :action => 'index'
 
   map.resources :oauth_clients
 
