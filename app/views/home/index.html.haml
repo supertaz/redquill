@@ -1,209 +1,34 @@
-#content
-  .nest
-    .secttitle
-      Latest Words
-      %span of potentially great wisdom
-    .clear
-    .post
-      .posthead
-        .title
-          %a{:href=>'#'}
-            In which I discuss stuff
-        .datetime
-          .date
-            September 30, 2009
-          .time
-            at 21:30
-      .postbody
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
-        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus.
-      .postfoot
-        .left
-          %a{:href => '#'}
-            tweet
-          |
-          %a{:href=>'#'}
-            email
-          |
-          %a{:href=>'#'}
-            comment
-        .right
-          %a{:href => '#comments'}
-            5 comments
-          (last comment at 11 November 2009 at 22:17)
-    .post
-      .posthead
-        .title
-          %a{:href=>'#'}
-            In which I discuss more stuff
-        .datetime
-          .date
-            September 30, 2009
-          .time
-            at 21:30
-      .postbody
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
-        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci.
-      .postfoot
-        .left
-          %a{:href => '#'}
-            tweet
-          |
-          %a{:href=>'#'}
-            email
-          |
-          %a{:href=>'#'}
-            comment
-        .right
-          %a{:href => '#comments'}
-            5 comments
-          (last comment at 11 November 2009 at 22:17)
-    .post
-      .posthead
-        .title
-          %a{:href=>'#'}
-            In which I discuss a lot more stuff, requiring a much longer title and a "read more" link
-        .datetime
-          .date
-            September 30, 2009
-          .time
-            at 21:30
-      .postbody
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
-        Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
-        %span
-          %a{:href=>'#'}read more
-      .postfoot
-        .left
-          %a{:href => '#'}
-            tweet
-          |
-          %a{:href=>'#'}
-            email
-          |
-          %a{:href=>'#'}
-            read more and comment
-        .right
-          %a{:href => '#comments'}
-            5 comments
-          (last comment at 11 November 2009 at 22:17)
-    .comments
-      %a{:name=>'comments'}
-      .comment
-        .commenthead
-          .id
-            Comment
-            %br
-            No. 1
-          .title
-            This is a ridiculously long comment title. Who actually needs to say this much in a title?
-          .metadata
-            .date
-              November 11, 2009
-            .time
-              at 21:30
-            .commenter
-              by
-              %a{:href=>'#'}Some random guy
-        .commentbody
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare mi eget mi imperdiet varius. Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
-        .commentfoot
-          .left
-            3 people agree
-            |
-            1 person disagrees
-            |
-            shared 123456 times
-          .right
-            %a{:href => '#'}
-              tweet
-            |
-            %a{:href=>'#'}
-              email
-            |
-            %a{:href=>'#'}
-              reply
-            |
-            %a{:href=>'#'}
-              agree
-            |
-            %a{:href=>'#'}
-              disagree
-      .comment
-        .commenthead
-          .id
-            Comment
-            %br
-            No. 2
-          .title
-            Just a short comment title
-          .metadata
-            .date
-              November 11, 2009
-            .time
-              at 21:30
-            .commenter
-              by
-              %a{:href=>'#'}Some random guy
-        .commentbody
-          %p.reply In reply to comment no. 1:
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare mi eget mi imperdiet varius. Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci. Nulla posuere mauris vel mauris commodo luctus vestibulum quis justo. Morbi vehicula commodo turpis a interdum. Praesent et quam in sem consequat laoreet.
-        .commentfoot
-          .left
-            3 people agree
-            |
-            1 person disagrees
-            |
-            shared 123456 times
-          .right
-            %a{:href => '#'}
-              tweet
-            |
-            %a{:href=>'#'}
-              email
-            |
-            %a{:href=>'#'}
-              reply
-            |
-            %a{:href=>'#'}
-              agree
-            |
-            %a{:href=>'#'}
-              disagree
-#sidebar
-  .nest
-    .section
-      .secthead
-        Navigation
-      .sectbody
-        %p
-          %a{:href=>'#'}Latest Entries
-        %p
-          %a{:href=>'#'}
-            Who
-            %i
-              %b is
-            this guy?
-        %p
-          %a{:href=>'#'}Contact Me
-    .section
-      .secthead
-        Archive
-      .sectbody
-        A historical archive goes here
-    .section
-      .secthead
-        Tags
-      .sectbody
-        A tag cloud goes here
-    .section
-      .secthead
-        Recent Tweets
-      .sectbody
-        %p A recent tweet
-        %p.tweet Another recent tweet
-        %p.tweet A longer tweet about how great OAuth is and how much we like social media and Twitter and such
-        %p.tweet Tweet.
+.secttitle
+  Latest Words
+  %span of potentially great wisdom
+.clear
+=render :partial => "common/post"
+.post
+  .posthead
+    .title
+      %a{:href=>'#'}
+        In which I discuss more stuff
+    .datetime
+      .date
+        September 30, 2009
+      .time
+        at 21:30
+  .postbody
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
+    Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus. Praesent mauris orci, interdum vel malesuada mollis, ultrices a orci. Nulla eget nisl nec velit convallis volutpat non at sapien. Vestibulum pretium mauris lorem. Curabitur mattis ultricies pharetra. Donec consequat vehicula est, nec gravida nunc sagittis porta. Etiam a neque non ligula lacinia ultrices et at nisl. Mauris sed massa leo, quis commodo ipsum. Sed nisl tellus, mattis at ullamcorper eget, tempor sed orci.
+  .postfoot
+    .left
+      %a{:href => '#'}
+        tweet
+      |
+      %a{:href=>'#'}
+        email
+      |
+      %a{:href=>'#'}
+        comment
+    .right
+      %a{:href => '#comments'}
+        5 comments
+      (last comment at 11 November 2009 at 22:17)
+=render :partial => "common/post_summary"
