@@ -128,12 +128,13 @@ body.styled
         .title
           +column(13)
           :vertical-align middle
+          +small_caps
+          :color #fff
+          +capitalize
+          :font-size 1.25em
           a
-            :color = #fff
-            +small_caps
+            :color #fff
             +no_dec
-            +capitalize
-            :font-size 1.25em
         .datetime
           +column(3, true)
           :text-align right

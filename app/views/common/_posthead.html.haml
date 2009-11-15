@@ -1,6 +1,9 @@
 .posthead
   .title
-    =link_to post.title, show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
+    -if title_link
+      =link_to post.title, show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
+    -else
+      #{post.title}
   .datetime
     .date
       #{Date::MONTHNAMES[post.created_at.month]} #{post.created_at.day.to_s.rjust(2, '0')}, #{post.created_at.year}

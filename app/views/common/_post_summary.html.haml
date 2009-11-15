@@ -1,5 +1,5 @@
 .post
-  =render :partial => 'common/posthead', :locals => {:post => post}
+  =render :partial => 'common/posthead', :locals => {:post => post, :title_link => true}
   .postbody
     -if post.body.length > 850
       :markdown
