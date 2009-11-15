@@ -7,8 +7,13 @@
       email
     |
     -if current_user
+      -if post.poster == current_user
+        =link_to 'edit', edit_post_url(post)
+        |
+        =link_to 'delete', delete_posts_url(:id => post.id), :confirm => 'Are you sure you want to delete this post?  THIS ACTION CAN NOT BE UNDONE!'
+        |
       -if post.body.length > 850 && !read_more == false
-        #{link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)}
+        =link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
       -else
         %a{:href => '#'}
           comment

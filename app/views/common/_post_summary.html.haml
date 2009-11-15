@@ -5,7 +5,7 @@
       :markdown
         #{h post.body[0, post.body[0, 800].rindex(/\W/)]} ...
         <span>
-          #{link_to 'read more', posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)}
+          #{link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)}
         </span>
     -else
       :markdown

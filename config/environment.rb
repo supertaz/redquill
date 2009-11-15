@@ -19,15 +19,16 @@ STORE_LOCATION_METHOD = :store_location
 Rails::Initializer.run do |config|
 
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com'
+  config.gem 'haml', :version => '>=2.2.13'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>=2.3.11', :source => 'http://gems.github.com'
   config.gem 'ruby-openid', :lib => 'openid', :version => '>=2.1.7'
   config.gem 'oauth', :version => '>= 0.3.6'
   config.gem 'oauth-plugin', :version => '>= 0.3.14'
-  config.gem 'authlogic', :version => '>=2.1.2'
-  config.gem 'authlogic-oid', :lib => 'authlogic_openid', :version => '>=1.0.4'
+  config.gem 'authlogic', :version => '>=2.1.3'
   config.gem 'authlogic-oauth', :lib => 'authlogic_oauth', :version => '>=1.0.8'
   config.gem 'syntax', :version => '>= 1.0.0'
   config.gem 'maruku', :version => '>= 0.6.0'
+  config.gem "acts-as-taggable-on", :version => '>=1.0.8', :source => "http://gemcutter.org"
 
   config.time_zone = 'Central Time (US & Canada)'
 

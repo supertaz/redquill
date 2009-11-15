@@ -33,7 +33,11 @@ class PostsController < ApplicationController
   end
 
   def delete
-    
+    @post = Post.find(params[:id])
+    if @post.poster == current_user
+      @post.destroy
+    end
+    redirect_to root_url
   end
 
   def list
