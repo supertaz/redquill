@@ -3,7 +3,11 @@
   %p
     =f.label :title
     %br
-    =f.text_field :title
+    =f.text_field :title, :size => 95
+  %p
+    =f.label :tag_list, 'Tag List'
+    %br
+    =f.text_field :tag_list, :size => 95
   %p
     =f.text_area :body, :cols => 80, :class => 'editor'
   %p

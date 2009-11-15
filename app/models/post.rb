@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   belongs_to :poster, :class_name => 'User'
   has_many :comments, :include => :commenter
+
+  acts_as_taggable_on :tags
+
   before_save :prepare_save
 
   attr_readonly :comments_count 

@@ -10,4 +10,5 @@
     -else
       :markdown
         #{h post.body}
+    =render :partial => 'common/post_tags', :locals => {:post => post}
   =render :partial => 'common/postfoot', :locals => {:post => post, :read_more => true}

@@ -3,5 +3,6 @@
   .postbody
     :markdown
       #{h post.body}
+    =render :partial => 'common/post_tags', :locals => {:post => post}
   =render :partial => 'common/postfoot', :locals => {:post => post, :read_more => false}
 =render :partial => "common/comments", :object => post.comments

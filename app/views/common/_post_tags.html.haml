@@ -1,0 +1,7 @@
+-if post.tag_counts.length > 0
+  %p.tags
+    Tags:
+    -post.tags.each_with_index do |tag, count|
+      %a{:href => '#'} #{tag.name}
+      - unless post.tag_counts.length - count < 2
+        |
