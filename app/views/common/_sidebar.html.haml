@@ -21,7 +21,8 @@
   .secthead
     Tags
   .sectbody
-    A tag cloud goes here
+    -tag_cloud tags_for_cloud, %w(tag1 tag2 tag3 tag4) do |tag, css_class|
+      =link_to "#{tag.name}&nbsp; ", tag_search_path(:action => :tag, :tag_name => tag.name), :class => css_class
 .section
   .secthead
     Recent Tweets

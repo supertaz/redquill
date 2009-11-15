@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.bio 'bio', :controller => 'bio', :action => 'index'
 
   map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show'
+  map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'
   map.resources :posts, :collection => {:delete => :get}
 
   map.resources :oauth_clients
