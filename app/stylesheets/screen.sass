@@ -99,12 +99,16 @@ body.styled
         :border-right 1px solid #ccc
         :color #444
         a.tag1
+          :color #999
           :font-size .8em
         a.tag2
+          :color #777
           :font-size .9em
         a.tag3
+          :color #555
           :font-size 1.0em
         a.tag4
+          :color #333
           :font-szie 1.1em
         a
           +no_dec
@@ -150,6 +154,10 @@ body.styled
           +italics
           :font-size .85em
           :color = !lightest_accent_color
+        .poster
+          a
+            +no_dec
+            :color = !light_base_color
       .postbody
         +column(16)
         +safe_padding
@@ -195,6 +203,16 @@ body.styled
           +no_dec
         span
           :color = !darker_base_color
+    .pagination
+      +safe_padding
+      +column(16)
+      :text-align center
+      :color #999
+      .current
+        :color = !darker_accent_color
+      a
+        +no_dec
+        :color = !darker_support_color
     .comments
       +column(16)
       :padding-left 3em

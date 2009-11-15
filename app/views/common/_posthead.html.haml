@@ -9,3 +9,6 @@
       #{Date::MONTHNAMES[post.created_at.month]} #{post.created_at.day.to_s.rjust(2, '0')}, #{post.created_at.year}
     .time
       at #{post.created_at.hour.to_s.rjust(2, '0')}:#{post.created_at.min.to_s.rjust(2, '0')} #{post.created_at.zone}
+    .poster
+      by
+      %a{:href=>'#'}#{post.poster.firstname} #{post.poster.lastname}

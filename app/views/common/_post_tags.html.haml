@@ -2,6 +2,6 @@
   %p.tags
     Tags:
     -post.tags.each_with_index do |tag, count|
-      %a{:href => '#'} #{tag.name}
+      =link_to "#{tag.name}", tag_search_path(:action => :tag, :tag_name => tag.name)
       - unless post.tag_counts.length - count < 2
         |

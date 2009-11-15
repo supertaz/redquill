@@ -3,3 +3,4 @@
   %span of potentially great wisdom
 .clear
 =render :partial => "common/post_summary", :collection => @posts, :as => :post
+=will_paginate @posts, :page_links => false, :previous_label => '&laquo; Newer&nbsp;&nbsp;', :next_label => '&nbsp;&nbsp;Older &raquo;'

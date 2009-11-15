@@ -43,4 +43,9 @@ class PostsController < ApplicationController
   def list
     
   end
+
+  def tag
+    @tag = params[:tag_name]
+    @posts = Post.tagged_with(@tag).by_age.paginate(:page => params[:page], :per_page => 5)
+  end
 end

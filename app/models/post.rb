@@ -9,8 +9,7 @@ class Post < ActiveRecord::Base
   attr_readonly :comments_count 
   attr_readonly :title_hash
 
-  named_scope :last_ten, :order => "id DESC", :limit => 10
-  named_scope :last_five, :order => "id DESC", :limit => 5
+  named_scope :by_age, {:order => "posts.id DESC"}
   named_scope :by_slug, lambda { |slug| {:conditions => ["title_hash = ?", Digest::MD5.hexdigest(slug)]}}
   named_scope :by_slug_and_date, lambda { |slug, year, month, day|
                     {

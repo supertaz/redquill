@@ -12,17 +12,20 @@
         this guy?
     %p
       %a{:href=>'#'}Contact Me
+    -if current_user && (current_user.has_role? 'poster')
+      =link_to 'Create a new post', new_post_url
 .section
   .secthead
     Archive
   .sectbody
     A historical archive goes here
-.section
-  .secthead
-    Tags
-  .sectbody
-    -tag_cloud tags_for_cloud, %w(tag1 tag2 tag3 tag4) do |tag, css_class|
-      =link_to "#{tag.name}&nbsp; ", tag_search_path(:action => :tag, :tag_name => tag.name), :class => css_class
+-unless Post.tag_counts.length < 1
+  .section
+    .secthead
+      Tags
+    .sectbody
+      -tag_cloud tags_for_cloud, %w(tag1 tag2 tag3 tag4) do |tag, css_class|
+        =link_to "#{tag.name}&nbsp; ", tag_search_path(:action => :tag, :tag_name => tag.name), :class => css_class
 .section
   .secthead
     Recent Tweets

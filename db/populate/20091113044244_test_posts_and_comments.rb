@@ -1,7 +1,8 @@
 post = Post.new(
         :title => 'In which I discuss stuff in the DB with no link',
         :body => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. [Sed ornare mi eget mi imperdiet varius.](#) Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus.',
-        :poster => User.first
+        :poster => User.first,
+        :tag_list => 'one tag, another, pickles'
 )
 post.save
 post.comments.create(

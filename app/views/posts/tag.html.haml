@@ -1,0 +1,6 @@
+.secttitle
+  Posts tagged with '#{@tag}'
+.clear
+=render :partial => "common/post_summary", :collection => @posts, :as => :post
+.clear
+=will_paginate @posts, :previous_label => '&laquo; Newer&nbsp;&nbsp;', :next_label => '&nbsp;&nbsp;Older &raquo;'

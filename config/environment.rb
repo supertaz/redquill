@@ -25,7 +25,6 @@ Rails::Initializer.run do |config|
   config.gem 'oauth', :version => '>= 0.3.6'
   config.gem 'oauth-plugin', :version => '>= 0.3.14'
   config.gem 'authlogic', :version => '>=2.1.3'
-  config.gem 'authlogic-oauth', :lib => 'authlogic_oauth', :version => '>=1.0.8'
   config.gem 'syntax', :version => '>= 1.0.0'
   config.gem 'maruku', :version => '>= 0.6.0'
   config.gem "acts-as-taggable-on", :version => '>=1.0.8', :source => "http://gemcutter.org"
