@@ -1,0 +1,29 @@
+.postfoot
+  .left
+    %a{:href => '#'}
+      tweet
+    |
+    %a{:href=>'#'}
+      email
+    |
+    -if current_user
+      -if post.body.length > 850 && !read_more == false
+        #{link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)}
+      -else
+        %a{:href => '#'}
+          comment
+    -else
+      =link_to 'Register', new_user_path, :class => 'auth'
+      or
+      =link_to 'log in', login_path, :class => 'auth'
+      to
+      comment
+  .right
+    -if post.comments_count > 0
+      %a{:href => '#comments'}
+        #{post.comments_count} comments
+      - last_comment = post.comments[post.comments_count - 1]
+      (last comment on #{Date::MONTHNAMES[last_comment.created_at.month]} #{last_comment.created_at.day.to_s.rjust(2, '0')}, #{last_comment.created_at.year}
+      at #{last_comment.created_at.hour.to_s.rjust(2, '0')}:#{last_comment.created_at.min.to_s.rjust(2, '0')} #{last_comment.created_at.zone})
+    -else
+      no comments

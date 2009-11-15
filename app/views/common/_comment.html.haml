@@ -8,9 +8,9 @@
     .title #{comment.title}
     .metadata
       .date
-        #{Date::MONTHNAMES[comment.created_at.month]} #{comment.created_at.day}, #{comment.created_at.year}
+        #{Date::MONTHNAMES[comment.created_at.month]} #{comment.created_at.day.to_s.rjust(2, '0')}, #{comment.created_at.year}
       .time
-        at #{comment.created_at.hour}:#{comment.created_at.min} #{comment.created_at.zone}
+        at #{comment.created_at.hour.to_s.rjust(2, '0')}:#{comment.created_at.min.to_s.rjust(2, '0')} #{comment.created_at.zone}
       .commenter
         by
         %a{:href=>'#'}#{comment.commenter.firstname} #{comment.commenter.lastname}

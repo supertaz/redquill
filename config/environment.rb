@@ -26,6 +26,8 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic', :version => '>=2.1.2'
   config.gem 'authlogic-oid', :lib => 'authlogic_openid', :version => '>=1.0.4'
   config.gem 'authlogic-oauth', :lib => 'authlogic_oauth', :version => '>=1.0.8'
+  config.gem 'syntax', :version => '>= 1.0.0'
+  config.gem 'maruku', :version => '>= 0.6.0'
 
   config.time_zone = 'Central Time (US & Canada)'
 

@@ -1,36 +1,7 @@
 .post
-  .posthead
-    .title
-      %a{:href=>'#'}
-        In which I discuss stuff
-    .datetime
-      .date
-        September 30, 2009
-      .time
-        at 21:30
+  =render :partial => 'common/posthead', :locals => {:post => post}
   .postbody
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    %a{:href=>'#'}Sed ornare mi eget mi imperdiet varius.
-    Pellentesque pretium urna sit amet neque eleifend vestibulum. Vivamus in nibh non lacus dignissim mollis iaculis sed metus.
-  .postfoot
-    .left
-      %a{:href => '#'}
-        tweet
-      |
-      %a{:href=>'#'}
-        email
-      |
-      -if current_user
-        %a{:href=>'#'}
-          comment
-      -else
-        =link_to 'Register', new_user_path, :class => 'auth'
-        or
-        =link_to 'log in', login_path, :class => 'auth'
-        to
-        comment
-    .right
-      %a{:href => '#comments'}
-        5 comments
-      (last comment at 11 November 2009 at 22:17)
-=render :partial => "common/comments", :object => @comments
+    :markdown
+      #{h post.body}
+  =render :partial => 'common/postfoot', :locals => {:post => post, :read_more => false}
+=render :partial => "common/comments", :object => post.comments

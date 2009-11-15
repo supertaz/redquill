@@ -6,6 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.bio 'bio', :controller => 'bio', :action => 'index'
 
+  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show'
+  map.resources :posts
+
   map.resources :oauth_clients
 
   map.test_request '/oauth/test_request', :controller => 'oauth', :action => 'test_request'
@@ -16,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.resources :user_sessions
+
+  map.resources :preview, :member => {:parse_markdown => :post}
 
   # The priority is based upon order of creation: first created -> highest priority.
 

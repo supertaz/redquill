@@ -1,0 +1,10 @@
+-form_for @post do |f|
+  =f.error_messages
+  %p
+    =f.label :title
+    %br
+    =f.text_field :title
+  %p
+    =f.text_area :body, :cols => 80, :class => 'editor'
+  %p
+    =f.submit :submit

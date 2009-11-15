@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer   :poster_id
       t.string    :title
       t.text      :body
-      t.integer   :comments_count
+      t.integer   :comments_count, :null => false, :default => 0
       t.timestamps
     end
   end
