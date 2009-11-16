@@ -65,12 +65,6 @@ class Post < ActiveRecord::Base
   private
 
   def prepare_save
-#    if self.comments_count.nil?
-#      self.comments_count = 0
-#    end
-#    if self.title_hash.nil?
-#      self.title_hash = Digest::MD5.hexdigest(self.title.strip.gsub(/,/, '').gsub(/\W/, '-'))
-#    end
     if self.local_date.nil?
       now = DateTime::now()
       self.local_date = "#{now.year}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
