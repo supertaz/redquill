@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :user_sessions
 
-  map.resources :preview, :member => {:parse_markdown => :post}
+  map.resources :preview, :collection => {:parse_markdown => :post}
 
   # The priority is based upon order of creation: first created -> highest priority.
 
