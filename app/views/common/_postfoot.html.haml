@@ -25,8 +25,7 @@
       comment
   .right
     -if post.comments_count > 0
-      %a{:href => '#comments'}
-        #{post.comments_count} comments
+      =link_to "#{post.comments_count} comments", show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug, :anchor => 'comments')
       - last_comment = post.comments[post.comments_count - 1]
       (last comment on #{Date::MONTHNAMES[last_comment.created_at.month]} #{last_comment.created_at.day.to_s.rjust(2, '0')}, #{last_comment.created_at.year}
       at #{last_comment.created_at.hour.to_s.rjust(2, '0')}:#{last_comment.created_at.min.to_s.rjust(2, '0')} #{last_comment.created_at.zone})
