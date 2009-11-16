@@ -3,9 +3,11 @@
     Navigation
   .sectbody
     %p
-      %a{:href=>'/'}Latest Entries
+      =link_to 'Latest Entries', root_url
     %p
-      %a{:href=>bio_url}
+      =link_to 'About this Blog', about_url
+    %p
+      %a{:href=>bio_path}
         Who
         %i
           %b is

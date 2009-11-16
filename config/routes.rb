@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.bio 'bio', :controller => 'bio', :action => 'index'
+  map.about 'about', :controller => 'about', :action => 'index'
 
   map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show'
   map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'

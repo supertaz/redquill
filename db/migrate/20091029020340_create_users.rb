@@ -17,7 +17,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :lastname
       t.timestamps
     end
-    add_index :users, [:email, :crypted_password, :password_salt], :named => "email_and_crypto_idx"
   end
 
   def self.down
