@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   attr_readonly :title_hash
 
   named_scope :by_age, {:order => "posts.id DESC"}
+  named_scope :by_year, lambda { |year| {:conditions => ["local_date like '?-%'", year], :order => "posts.id DESC"}}
+  named_scope :by_month, lambda { |year, month| {:conditions => ["local_date like '?-?-%'", year, month], :order => "posts.id DESC"}}
   named_scope :by_slug, lambda { |slug| {:conditions => ["title_hash = ?", Digest::MD5.hexdigest(slug)]}}
   named_scope :by_slug_and_date, lambda { |slug, year, month, day|
                     {
@@ -34,8 +36,30 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def split_date
-    
+  def self.counts_by_year
+    years = Hash.new
+    start = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
+    (start..DateTime::now().year).each do |year|
+      years[year.to_s] = Post.by_year(year).count
+    end
+    years
+  end
+
+  def self.counts_by_month
+    months = Hash.new
+    startyear = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
+    (startyear..DateTime::now().year).each do |year|
+      months[year] = [Post.by_year(year).count]
+      monthcount = 1
+      (1..12).each do |month|
+        count = Post.by_month(year, month).count
+        if count > 0
+          months[year][monthcount] = {DateTime::MONTHNAMES[month] => count}
+          monthcount = monthcount + 1
+        end
+      end
+    end
+    months
   end
 
   private

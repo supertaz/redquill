@@ -1,0 +1,31 @@
+#header
+  +column(!blueprint_grid_columns)
+  :background-color = !background_color
+  +small_caps
+  :margin-bottom 5px
+  :height 6em
+  :border-bottom 3px double #ccc
+#identityarea
+  +column(!blueprint_grid_columns - 6)
+  :margin-top 5px
+  :text-align left
+  h1
+    :font-size 3em
+  span
+    :color = !darker_base_color
+  .tagline
+    +capitalize
+    +italics
+    :font-size 1.1em
+    :color #666
+    :padding-left .25em
+#usernav
+  +column(6, true)
+  +rounded-bottom(5px)
+  :background-color = !usernav_background_color
+  :text-align center
+  :padding-bottom 2px
+  :color #666
+  a
+    +no_dec
+    :color = !darker_support_color

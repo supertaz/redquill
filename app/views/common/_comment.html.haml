@@ -7,13 +7,9 @@
       No. #{comment.seqno}
     .title #{comment.title}
     .metadata
-      .date
-        #{Date::MONTHNAMES[comment.created_at.month]} #{comment.created_at.day.to_s.rjust(2, '0')}, #{comment.created_at.year}
-      .time
-        at #{comment.created_at.hour.to_s.rjust(2, '0')}:#{comment.created_at.min.to_s.rjust(2, '0')} #{comment.created_at.zone}
+      =render :partial => 'common/datetime', :object => comment
       .commenter
-        by
-        %a{:href=>'#'}#{comment.commenter.firstname} #{comment.commenter.lastname}
+        =render :partial => 'common/byline', :object => comment.commenter
   .commentbody
     -unless comment.in_reply_to_seqno.nil? || comment.in_reply_to_seqno == 0
       %p.reply In reply to comment no. #{comment.in_reply_to_seqno}:

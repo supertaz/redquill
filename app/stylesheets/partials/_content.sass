@@ -1,0 +1,25 @@
+@import partials/posts
+@import partials/comments
+
+#content
+  +column(18)
+  :background = !content_background_color
+  +rounded(5px)
+  .secttitle
+    +small_caps
+    :font-size 1.5em
+    :padding-left .5em
+    :margin-bottom .15em
+    span
+      :font-size .75em
+      :color #666
+  .pagination
+    +safe_padding
+    +column(16)
+    :text-align center
+    :color #999
+    .current
+      :color = !darker_accent_color
+    a
+      +no_dec
+      :color = !darker_support_color

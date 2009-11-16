@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show'
   map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'
-  map.resources :posts, :collection => {:delete => :get}
+  map.resources :posts, :collection => {:delete => :get, :tweet => [:get, :post], :email => [:get, :post]}, :has_many => :comments
+  map.resources :comments, :members => {:new => :get, :create => :post, :edit => :get, :update => :post, :reply => :get,
+                                        :agree => :get, :disagree => :get, :tweet => [:get, :post], :email => [:get, :post]}
 
   map.resources :oauth_clients
 

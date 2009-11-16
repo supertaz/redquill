@@ -20,7 +20,11 @@
   .secthead
     Archive
   .sectbody
-    A historical archive goes here
+    -counts_for_archive.each do |year, data|
+      .year #{year} (#{data[0]})
+      -data[1..data.length - 1].each do |month|
+        -month.each do |name, count|
+          .month #{name} (#{count})
 -unless Post.tag_counts.length < 1
   .section
     .secthead

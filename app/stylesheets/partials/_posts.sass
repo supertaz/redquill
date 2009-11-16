@@ -1,0 +1,76 @@
+.post
+  +safe_padding
+  .posthead
+    +column(16)
+    +rounded-top(5px)
+    +safe_padding
+    :background-color = !darker_base_color
+    :border-top = "1px solid" !darker_base_color
+    :border-left = "1px solid" !darker_base_color
+    :border-right = "1px solid" !darker_base_color
+    .title
+      +column(13)
+      :vertical-align middle
+      +small_caps
+      :color #fff
+      +capitalize
+      :font-size 1.25em
+      a
+        :color #fff
+        +no_dec
+    .datetime
+      +column(3, true)
+      :text-align right
+      :vertical-align bottom
+      +italics
+      :font-size .85em
+      :color = !lightest_accent_color
+    .poster
+      a
+        +no_dec
+        :color = !light_base_color
+  .postbody
+    +column(16)
+    +safe_padding
+    :border-left 1px solid #ccc
+    :border-right 1px solid #ccc
+    :border-bottom 1px solid #ccc
+    +rounded-bottom(5px)
+    a
+      :color = !darker_support_color
+      +no_dec
+    span
+      a
+        :color = !darker_base_color
+        +no_dec
+        +italics
+        :font-size .9em
+        +small_caps
+        +capitalize
+    p.tags
+      +italics
+      :color #666
+      :font-size .8em
+      :padding-top .4em
+  .postfoot
+    +column(16)
+    +safe_padding
+    +italics
+    :margin-bottom 5px
+    :color #666
+    :text-align right
+    :font-size .9em
+    .left
+      +column(7)
+      :text-align left
+    .right
+      +column(9,true)
+      :text-align right
+    a.auth
+      :color = !darker_support_color
+      +no_dec
+    a
+      :color = !darker_accent_color
+      +no_dec
+    span
+      :color = !darker_base_color

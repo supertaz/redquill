@@ -5,10 +5,6 @@
     -else
       #{post.title}
   .datetime
-    .date
-      #{Date::MONTHNAMES[post.created_at.month]} #{post.created_at.day.to_s.rjust(2, '0')}, #{post.created_at.year}
-    .time
-      at #{post.created_at.hour.to_s.rjust(2, '0')}:#{post.created_at.min.to_s.rjust(2, '0')} #{post.created_at.zone}
+    =render :partial => 'common/datetime', :object => post
     .poster
-      by
-      %a{:href=>'#'}#{post.poster.firstname} #{post.poster.lastname}
+      =render :partial => 'common/byline', :object => post.poster
