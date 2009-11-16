@@ -21,10 +21,10 @@
     Archive
   .sectbody
     -counts_for_archive.each do |year, data|
-      .year #{year} (#{data[0]})
+      .year=link_to "#{year} (#{data[0]})", show_posts_url(:year => year, :month => nil, :day => nil, :slug => nil)
       -data[1..data.length - 1].each do |month|
         -month.each do |name, count|
-          .month #{name} (#{count})
+          .month=link_to "#{name} (#{count})", show_posts_url(:year => year, :month => DateTime::MONTHNAMES.index(name), :day => nil, :slug => nil)
 -unless Post.tag_counts.length < 1
   .section
     .secthead

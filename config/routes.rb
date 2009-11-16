@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.bio 'bio', :controller => 'bio', :action => 'index'
   map.about 'about', :controller => 'about', :action => 'index'
 
-  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show'
+  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
   map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'
   map.resources :posts, :collection => {:delete => :get, :tweet => [:get, :post], :email => [:get, :post]}, :has_many => :comments
   map.resources :comments, :members => {:new => :get, :create => :post, :edit => :get, :update => :post, :reply => :get,
@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :user_sessions
 
-  map.resources :preview, :collection => {:parse_markdown => :post}
+  map.parse_markdown '/preview/parse_markdown', :controller => 'preview', :action => 'parse_markdown', :method => :post
 
   # The priority is based upon order of creation: first created -> highest priority.
 

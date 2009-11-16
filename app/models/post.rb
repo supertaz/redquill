@@ -10,9 +10,10 @@ class Post < ActiveRecord::Base
   attr_readonly :title_hash
 
   named_scope :by_age, {:order => "posts.id DESC"}
-  named_scope :by_year, lambda { |year| {:conditions => ["local_date like '?-%'", year], :order => "posts.id DESC"}}
-  named_scope :by_month, lambda { |year, month| {:conditions => ["local_date like '?-?-%'", year, month], :order => "posts.id DESC"}}
+  named_scope :by_year, lambda { |year| {:conditions => ["local_date like '#{year}-%%'"], :order => "posts.id DESC"}}
+  named_scope :by_month, lambda { |year, month| {:conditions => ["local_date like '#{year}-#{month}-%%'"], :order => "posts.id DESC"}}
   named_scope :by_slug, lambda { |slug| {:conditions => ["title_hash = ?", Digest::MD5.hexdigest(slug)]}}
+  named_scope :by_date, lambda { |year, month, day| {:conditions => ["local_date like '#{year}-#{month}-#{day}'"], :order => "posts.id DESC"}}
   named_scope :by_slug_and_date, lambda { |slug, year, month, day|
                     {
                             :conditions => [

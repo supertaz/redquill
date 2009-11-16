@@ -29,7 +29,19 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.by_slug_and_date(params[:slug], params[:year], params[:month], params[:day])
+    unless params[:slug].nil? || params[:day].nil?|| params[:month].nil? || params[:year].nil?
+      @posts = Post.by_slug_and_date(params[:slug], params[:year], params[:month], params[:day])
+    else
+      if params[:slug].nil? && !params[:day].nil? && !params[:month].nil? && !params[:year].nil?
+        @posts = Post.by_date(params[:year], params[:month], params[:day])
+      elsif params[:slug].nil? && params[:day].nil? && !params[:month].nil? && !params[:year].nil?
+        @posts = Post.by_month(params[:year], params[:month])
+      elsif params[:slug].nil? && params[:day].nil? && params[:month].nil? && !params[:year].nil?
+        @posts = Post.by_year(params[:year])
+      else
+        redirect_to root_url
+      end
+    end
   end
 
   def delete
