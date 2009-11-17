@@ -7,25 +7,19 @@ ActionController::Routing::Routes.draw do |map|
   map.bio 'bio', :controller => 'bio', :action => 'index'
   map.about 'about', :controller => 'about', :action => 'index'
 
-  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
   map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'
   map.resources :posts, :collection => {:delete => :get, :tweet => [:get, :post], :email => [:get, :post]}, :has_many => :comments
   map.resources :comments, :members => {:new => :get, :create => :post, :edit => :get, :update => :post, :reply => :get,
                                         :agree => :get, :disagree => :get, :tweet => [:get, :post], :email => [:get, :post]}
 
-  map.resources :oauth_clients
-
-  map.test_request '/oauth/test_request', :controller => 'oauth', :action => 'test_request'
-  map.access_token '/oauth/access_token', :controller => 'oauth', :action => 'access_token'
-  map.request_token '/oauth/request_token', :controller => 'oauth', :action => 'request_token'
-  map.authorize '/oauth/authorize', :controller => 'oauth', :action => 'authorize'
-  map.oauth '/oauth', :controller => 'oauth', :action => 'index'
   map.resources :users
 
   map.resources :user_sessions
 
   map.parse_markdown '/preview/parse_markdown', :controller => 'preview', :action => 'parse_markdown', :method => :post
 
+  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
+ 
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,13 +1,9 @@
 one:
-  email: MyString
-  password: MyString
+  email: test@test.com
+  crypted_password: c379c4543032ba4d190dc23535e19547dd081c994d8095805eec1c90dec6be9463437f611fefff4838e123822bf2163c54f2d2bce2c63b8b6c76badebf3963f6
+  password_salt: 2jWVp_enLh50e-DHYQvY
+  persistence_token: 6e0b9274f9f85a5b2bf952e8b841b1afcda81eda89988090ffe4ed8fe1a11be9e4c8387dc1bcaff8c4a6b5556e28e1cabe9dd0d6c84fa8573541f70b98e4bc7a
   nickname: MyString
   firstname: MyString
   lastname: MyString
-
-two:
-  email: MyString
-  password: MyString
-  nickname: MyString
-  firstname: MyString
-  lastname: MyString
+  username: test

@@ -48,15 +48,17 @@ class Post < ActiveRecord::Base
 
   def self.counts_by_month
     months = Hash.new
-    startyear = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
-    (startyear..DateTime::now().year).each do |year|
-      months[year] = [Post.by_year(year).count]
-      monthcount = 1
-      (1..12).each do |month|
-        count = Post.by_month(year, month).count
-        if count > 0
-          months[year][monthcount] = {DateTime::MONTHNAMES[month] => count}
-          monthcount = monthcount + 1
+    unless Post.count == 0
+      startyear = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
+      (startyear..DateTime::now().year).each do |year|
+        months[year] = [Post.by_year(year).count]
+        monthcount = 1
+        (1..12).each do |month|
+          count = Post.by_month(year, month).count
+          if count > 0
+            months[year][monthcount] = {DateTime::MONTHNAMES[month] => count}
+            monthcount = monthcount + 1
+          end
         end
       end
     end
