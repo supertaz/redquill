@@ -62,13 +62,13 @@ class PostsController < ApplicationController
   def show
     if params[:year] == 'all'
       @posts = Post.by_age.paginate(:page => params[:page], :per_page => 5)
-      render 'list'
+      render_post_list
     else
       unless params[:slug].nil? || params[:day].nil?|| params[:month].nil? || params[:year].nil?
         posts = Post.by_slug_and_date(params[:slug], params[:year], params[:month], params[:day]).paginate(:page => params[:page], :per_page => 5)
         if posts.length > 1
           @posts = posts
-          render 'list'
+          render_post_list
         else
           @post = posts[0]
         end
@@ -77,7 +77,7 @@ class PostsController < ApplicationController
           posts = Post.by_date(params[:year], params[:month], params[:day]).paginate(:page => params[:page], :per_page => 5)
           if posts.length > 1
             @posts = posts
-            render 'list'
+            render_post_list
           else
             @post = posts[0]
           end
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
           posts = Post.by_month(params[:year], params[:month]).paginate(:page => params[:page], :per_page => 5)
           if posts.length > 1
             @posts = posts
-            render 'list'
+            render_post_list
           else
             @post = posts[0]
           end
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
           posts = Post.by_year(params[:year]).paginate(:page => params[:page], :per_page => 5)
           if posts.length > 1
             @posts = posts
-            render 'list'
+            render_post_list
           else
             @post = posts[0]
           end
@@ -144,6 +144,27 @@ class PostsController < ApplicationController
         @note = params[:note]
         render 'email'
       end
+    end
+  end
+
+  private
+
+  def render_post_list
+    oldest_post = Post.new
+    @posts.each do |post|
+      unless oldest_post.created_at.nil?
+        if post.updated_at > oldest_post.updated_at
+          oldest_post = post
+        end
+      else
+        oldest_post = post
+      end
+    end
+    if stale?(
+            :etag => oldest_post,
+            :last_modified => oldest_post.updated_at
+            )
+      render 'list'
     end
   end
 end
