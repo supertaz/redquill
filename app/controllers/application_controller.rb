@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   helper_method :owner_user
   helper_method :redirect_back_or_default
   helper_method :store_location
+  helper_method :require_user
+  helper_method :require_no_user
 
 private
 
@@ -39,6 +41,24 @@ private
 
   def store_location
     session[:return_to] = request.request_uri
+  end
+
+  def require_user
+    unless current_user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to new_user_session_url
+      return false
+    end
+  end
+
+  def require_no_user
+    if current_user
+      store_location
+      flash[:notice] = "You must be logged out to access this page"
+      redirect_to account_url
+      return false
+    end
   end
 
 end
