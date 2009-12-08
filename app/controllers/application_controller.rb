@@ -40,7 +40,11 @@ private
   end
 
   def store_location
-    session[:return_to] = request.request_uri
+    if request.get?
+      session[:return_to] = request.request_uri
+    else
+      session[:return_to] = request.referrer unless request.xhr?
+    end
   end
 
   def require_user

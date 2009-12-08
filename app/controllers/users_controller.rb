@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   caches_page :show
   cache_sweeper :post_sweeper, :only => [:create]
 
+  before_filter :require_user, :only => [:edit, :update]
+  before_filter :require_no_user, :only => [:new, :create]
+
   def new
     @user = User.new
   end

@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   caches_page   :index, :new, :show, :tag
   cache_sweeper :post_sweeper, :only => [:create, :update, :delete]
 
+  before_filter :require_user, :only => [:new, :edit, :create, :update]
+
   def index
     redirect_to show_posts_url(:year => 'all')
   end
