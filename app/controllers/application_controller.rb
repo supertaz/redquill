@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :page_title
   helper_method :owner_user
+  helper_method :redirect_back_or_default
+  helper_method :store_location
 
 private
 
@@ -29,4 +31,14 @@ private
       @page_title
     end
   end
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
+
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+
 end
