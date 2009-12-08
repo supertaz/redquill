@@ -1,9 +1,4 @@
-# For DreamHost hosting only...remove for any other environment:
-#
-if RAILS_ENV == 'production'
-  ENV["GEM_HOME"]="/home/USER/.gems"
-  ENV["GEM_PATH"]="/home/USER/.gems:/usr/lib/ruby/gems/1.8"
-end
+RAILS_ENV = ENV['RAILS_ENV'] || 'production'
 
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
