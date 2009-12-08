@@ -16,11 +16,21 @@
     %p
       %span Twitter username
       %br
-      &nbsp;&nbsp;#{@user.twitter_username}
+      -unless @user.twitter_username.nil? || @user.twitter_username == ''
+        %a{:href=> "http://twitter.com/#{@user.twitter_username}"}
+          &nbsp;&nbsp;#{@user.twitter_username}
     %p
       %span Website
       %br
-      &nbsp;&nbsp;#{@user.user_url}
+      -unless @user.user_url.nil? || @user.user_url == ''
+        %a{:href => "http://#{@user.user_url}"}
+          &nbsp;&nbsp;#{@user.user_url}
+    %p
+      %span Email
+      %br
+      -unless @user.email.nil? || @user.email == ''
+        %a{:href => user_email_url(@user)}
+          &nbsp;&nbsp;Contact this user
   .right
     %p
       %span Bio

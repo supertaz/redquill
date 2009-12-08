@@ -74,14 +74,17 @@
     :padding .9em
     :margin-bottom 2em
     +small_caps
+    a
+      +no_dec
+      :color = !profile_link_color
     img
       :margin-bottom 1em
     span
-      :color = !comment_header_text
+      :color = !profile_section_head
       :margin-bottom .5em
     .title
-      :border-bottom = "1px solid" !comment_header_text
-      :color = !comment_header_text
+      :border-bottom = "1px solid" !profile_header_text
+      :color = !profile_header_text
       +small_caps
       +capitalize
       :font-size 1.5em
