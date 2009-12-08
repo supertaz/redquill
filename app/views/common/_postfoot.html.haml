@@ -1,6 +1,6 @@
 .postfoot
   .left
-    %a{:href => "http://twitter.com/home?status=#{CGI::escape('#DevKoans ' + post.title[0,99] + (post.title.length > 100 ? '... ' : ' ') + post.short_url)}"}
+    %a{:href => "http://twitter.com/home?status=#{CGI::escape(post.title[0,99] + (post.title.length > 100 ? '... ' : ' ') + post.short_url + ' #DevKoans')}"}
       tweet
     |
     %a{:href=>post_email_url(post)}
