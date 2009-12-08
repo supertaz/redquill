@@ -33,22 +33,24 @@ class AjaxController < ApplicationController
     end
     posts = Array.new()
     post_ids = Array.new()
-    params[:pc].to_i.times do |i|
-      pid = "pid#{i}"
-      if i == 0
-        post_ids = "#{params[pid.to_sym]}"
-      else
-        post_ids += ",#{params[pid.to_sym]}"
+    if params[:pc].to_i > 0 then
+      params[:pc].to_i.times do |i|
+        pid = "pid#{i}"
+        if i == 0
+          post_ids = "#{params[pid.to_sym]}"
+        else
+          post_ids += ",#{params[pid.to_sym]}"
+        end
       end
-    end
-    post_list = Post.in_list(post_ids)
-    post_list.each do |post|
-      post_hash = Hash.new()
-      post_hash[:is_poster] = current_user ? post.poster.id == current_user.id : false
-      post_hash[:post_div_id] = "#post-#{post.id}"
-      @post = post
-      post_hash[:comment_info] = render_to_string 'common/_post_comment_info'
-      posts << post_hash
+      post_list = Post.in_list(post_ids)
+      post_list.each do |post|
+        post_hash = Hash.new()
+        post_hash[:is_poster] = current_user ? post.poster.id == current_user.id : false
+        post_hash[:post_div_id] = "#post-#{post.id}"
+        @post = post
+        post_hash[:comment_info] = render_to_string 'common/_post_comment_info'
+        posts << post_hash
+      end
     end
     json_response[:posts] = posts
     render :json => json_response

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var baseURLforJSON = "http://localhost:3000/json/";
+    var baseURLforJSON = "http://www.devkoans.com/json/";
     var regExp = new RegExp("[0-9]+");
 
     var opinionURL = baseURLforJSON + "opinion/";
