@@ -1,34 +1,28 @@
 @import blueprint/reset.sass
 @import blueprint
 @import partials/base.sass
-@import partials/rounded_corners.sass
 @import partials/styling.sass
 @import partials/header
+@import partials/livearea
 @import partials/footer
 @import partials/content
 @import partials/sidebar
+@import partials/dialog_conetent
 
 // To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
 // +blueprint
 
 body.styled
-  :background-color = !background_color
+  :background-color = !footer_background_color
   +base_style
   +blueprint-utilities
-  +blueprint-debug
   +blueprint-interaction
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
-  form
-    +blueprint-form
-  #container
+  .container
     +container
-  #livearea
-    :text-align left
-    +column(!blueprint_grid_columns)
-    +rounded(7px)
-    :background-color = !livearea_background_color
-    :padding-top .5em
-  .nest
-    +safe_padding
-    +rounded(5px)
+  input
+    :border = "1px solid" !comment_header_text
+  textarea
+    :border = "1px solid" !comment_header_text
+

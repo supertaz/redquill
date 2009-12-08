@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :page_title
+  helper_method :owner_user
 
 private
 
@@ -15,6 +16,10 @@ private
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
+  end
+
+  def owner_user
+    Group.find_by_name('Owner').users.first
   end
 
   def page_title(new_title = nil)

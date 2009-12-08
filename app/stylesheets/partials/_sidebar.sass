@@ -2,32 +2,18 @@
   +column(6, true)
   +small_caps
   :background = !sidebar_background_color
-  +rounded-right(7px)
-  :height 100%
-  :min-height 100%
   :text-align left
-  :padding-top 1.25em
+  :margin-bottom 2em
   .section
-    +safe_padding
-    :padding-top 1em
-    :margin-top 1em
+    :margin-top .25em
     .secthead
-      +column(5,true)
-      +rounded-top(5px)
-      :padding 0px 3px 0px 3px
-      :background-color = !darker_support_color
-      :border-top = "1px solid" !darker_support_color
-      :border-left = "1px solid" !darker_support_color
-      :border-right = "1px solid" !darker_support_color
-      :color #fff
+      +column(6)
+      :padding .75em 3px 0px 3px
+      :color = !section_header_text
+      :border-bottom = "2px solid" !section_header_text
     .sectbody
-      +column(5,true)
-      +rounded-bottom(5px)
+      +column(6)
       :padding 1px 3px 1px 3px
-      :margin-bottom 5px
-      :border-bottom 1px solid #ccc
-      :border-left 1px solid #ccc
-      :border-right 1px solid #ccc
       :color #444
       .year
         :padding-left .25em
@@ -36,19 +22,26 @@
         :padding-left 1em
         :font-size .9em
       a.tag1
-        :color #888
+        :color #777
         :font-size .8em
       a.tag2
         :color #666
-        :font-size .9em
+        :font-size 1em
       a.tag3
         :color #444
-        :font-size 1.0em
+        :font-size 1.2em
       a.tag4
         :color #111
-        :font-szie 1.2em
+        :font-szie 1.4em
+      p.twitter
+        :padding-top .5em
+      p.tweet
+        +column(6)
+        :padding .1em
+        :border-top 1px solid #ccc
+      img
+        :padding 0px 7px 6px 5px
       a
         +no_dec
-        :color #666
-      p.tweet
-        :border-top 1px solid #ccc
+        :color = !sidebar_link_color
+

@@ -6,20 +6,18 @@
     :font-size .8em
     .commenthead
       +column(15)
-      +rounded-top(5px)
       +safe_padding
-      :background-color = !darkest_accent_color
-      :border-top = "1px solid" !darkest_accent_color
-      :border-left = "1px solid" !darkest_accent_color
-      :border-right = "1px solid" !darkest_accent_color
+      :background-color = !comment_background_color
+      :color = !comment_header_text
+      :border-bottom = "1px solid" !comment_header_text
       .id
         +column(2)
-        :color #fff
+        :color = !comment_header_text
         :padding-top .2em
       .title
         +column(10)
         :vertical-align middle
-        :color #fff
+        :color = !comment_header_text
         +small_caps
         +no_dec
         +capitalize
@@ -30,26 +28,23 @@
         :vertical-align bottom
         +italics
         :font-size .85em
-        :color = !lightest_base_color
+        :color = !comment_header_text
         a
           +no_dec
-          :color = !light_base_color
+          :color = !comment_link_color
     .commentbody
       +column(15)
       +safe_padding
-      :border-left 1px solid #ccc
-      :border-right 1px solid #ccc
-      :border-bottom 1px solid #ccc
-      +rounded-bottom(5px)
+      :border-bottom = "1px solid" !comment_header_text
       p.reply
         +italics
         :color #888
       a
-        :color = !darker_support_color
+        :color = !comment_link_color
         +no_dec
       span
         a
-          :color = !darker_base_color
+          :color = !comment_link_color
           +no_dec
           +italics
           :font-size .9em
@@ -59,14 +54,14 @@
       +column(15)
       +safe_padding
       +italics
-      :margin-bottom 5px
+      :margin-bottom 2em
       :color #666
       :font-size .9em
       a.auth
-        :color = !darker_support_color
+        :color = !comment_link_color
         +no_dec
       a
-        :color = !darker_accent_color
+        :color = !comment_link_color
         +no_dec
       .left
         +column(8)
@@ -75,4 +70,4 @@
         +column(7,true)
         :text-align right
       span
-        :color = !darker_base_color
+        :color = !comment_header_text

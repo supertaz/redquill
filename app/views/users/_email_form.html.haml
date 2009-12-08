@@ -1,0 +1,30 @@
+- form_tag user_email_url(@user), :method =>:post do
+  .form
+    .title
+      Send a message
+    -unless current_user
+      %p
+        =label_tag :sender_name, 'Your Name (required)'
+        %br
+        =text_field_tag :sender_name, @sender_name, :size => 50
+      %p
+        =label_tag :sender_email, 'Your Email (required)'
+        %br
+        =text_field_tag :sender_email, @sender_email, :size => 50
+    %p
+      =label_tag :subject, 'Subject (required)'
+      %br
+      =text_field_tag :subject, @subject, :size => 75
+    %p
+      =label_tag :note, 'Message'
+      %br
+      =text_area_tag :note, @note, :rows => 10, :style => 'width:589px'
+    .clear
+    .center
+      %p.captcha
+        %br
+        = recaptcha_tags
+        %br
+      %p
+        =hidden_field_tag :user_id, @user.username
+        =submit_tag :submit

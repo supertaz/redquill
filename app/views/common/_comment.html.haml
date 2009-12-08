@@ -1,4 +1,4 @@
-.comment
+.comment{:id => "post-#{comment.post.id}-comment-#{comment.seqno}"}
   %a{:name=>"comment-#{comment.seqno}"}
   .commenthead
     .id
@@ -9,47 +9,12 @@
     .metadata
       =render :partial => 'common/datetime', :object => comment
       .commenter
-        =render :partial => 'common/byline', :object => comment.commenter
+        -unless comment.guest?
+          =render :partial => 'common/byline', :object => comment.commenter
+        -else
+          =render :partial => 'common/byline', :locals => {:guest => true, :guest_name => comment.guest_name, :guest_url => comment.guest_url}
   .commentbody
     -unless comment.in_reply_to_seqno.nil? || comment.in_reply_to_seqno == 0
       %p.reply In reply to comment no. #{comment.in_reply_to_seqno}:
     %p #{comment.body}
-  .commentfoot
-    .left
-      #{comment.agreed > 0 ? "#{pluralize comment.agreed, 'person'}" : 'no one agrees'}
-      #{comment.agreed > 0 ? "#{comment.agreed > 1 ? ' agree' : ' agrees'}" : ''}
-      |
-      #{comment.disagreed > 0 ? "#{pluralize comment.disagreed, 'person'}" : 'no one agrees'}
-      #{comment.disagreed > 0 ? "#{comment.disagreed > 1 ? ' disagree' : ' disagrees'}" : ''}
-      |
-      shared #{pluralize comment.shared, 'time'}
-    .right
-      -if current_user
-        %a{:href => '#'}
-          tweet
-        |
-        %a{:href=>'#'}
-          email
-        |
-        %a{:href=>'#'}
-          reply
-        |
-        %a{:href=>'#'}
-          agree
-        |
-        %a{:href=>'#'}
-          disagree
-      -else
-        =link_to 'Register', new_user_path, :class => 'auth'
-        or
-        =link_to 'log in', login_path, :class => 'auth'
-        to:
-        %span tweet
-        |
-        %span email
-        |
-        %span reply
-        |
-        %span agree
-        |
-        %span disagree
+  =render 'common/commentfoot', :object => comment

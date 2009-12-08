@@ -1,0 +1,12 @@
+.commentfoot
+  .left{:id => "opinions-#{commentfoot.id}"}
+    =render 'common/comment_opinions', :object => commentfoot
+  .right
+    %a{:href=>post_comment_reply_url(commentfoot.post, commentfoot)}
+      reply
+    |
+    %a.agree{:href=>'#', :id => "agree-#{commentfoot.id}"}
+      agree
+    |
+    %a.disagree{:href=>'#', :id => "disagree-#{commentfoot.id}"}
+      disagree

@@ -1,64 +1,36 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'home', :action => 'index'
+  map.root :controller => 'posts'
 
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.bio 'bio', :controller => 'bio', :action => 'index'
-  map.about 'about', :controller => 'about', :action => 'index'
 
+  map.paged_tags 'tags/:tag_name/page/:page', :controller => 'posts', :action => 'tag'
   map.tag_search 'tags/:tag_name', :controller => 'posts', :action => 'tag'
-  map.resources :posts, :collection => {:delete => :get, :tweet => [:get, :post], :email => [:get, :post]}, :has_many => :comments
-  map.resources :comments, :members => {:new => :get, :create => :post, :edit => :get, :update => :post, :reply => :get,
-                                        :agree => :get, :disagree => :get, :tweet => [:get, :post], :email => [:get, :post]}
 
-  map.resources :users
+  map.all_paged '/posts/all/page/:page', :controller => 'posts', :action => 'show', :year => 'all'
+  map.resources :posts, :collection => {:delete => :get}, :except => :show, :has_many => :comments do |post|
+    post.email '/share/email', :controller => 'posts', :action => 'email'
+    post.resources :comments,  :collection => {:new => :get, :create => :post},
+                                :except => [:list, :show, :edit, :destroy, :update] do |comment|
+      comment.reply '/reply', :controller => 'comments', :action => 'reply'
+      comment.agree '/opinion', :controller => 'comments', :action => 'agree'
+      comment.disagree '/disagree', :controller => 'comments', :action => 'disagree'
+    end
+  end
+  map.connect '/posts/:year/:month/:day/page/:page', :controller => 'posts', :action => 'show'
+  map.connect '/posts/:year/:month/page/:page', :controller => 'posts', :action => 'show'
+  map.connect '/posts/:year/page/:page', :controller => 'posts', :action => 'show'
+  map.show_posts '/posts/:year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
+
+  map.resources :users, :except => [:list, :destroy] do |user|
+    user.email '/email', :controller => 'users', :action => 'email'
+  end
 
   map.resources :user_sessions
 
-  map.parse_markdown '/preview/parse_markdown', :controller => 'preview', :action => 'parse_markdown', :method => :post
-
-  map.show_posts ':year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
- 
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  #map.connect ':controller/:action/:id'
-  #map.connect ':controller/:action/:id.:format'
+  map.handle_json_links '/json/links', :controller => 'ajax', :action => 'links', :method => :get
+  map.handle_opinion '/json/opinion', :controller => 'ajax', :action => 'opinion', :method => :get
+  map.parse_markdown '/preview/parse_markdown', :controller => 'ajax', :action => 'parse_markdown', :method => :post
 end

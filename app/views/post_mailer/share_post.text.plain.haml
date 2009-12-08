@@ -1,0 +1,13 @@
+Dear #{@recipient_name},
+
+A user of our site, #{@user.firstname} #{@user.lastname}, wanted to share a post with you.  Below are the details
+of the post and if you just want to visit our site, it's at #{@siteurl}
+
+Post title: #{@post.title}
+Post URL:   #{@post.short_url}
+
+Note from #{@user.firstname}:
+
+#{@note}
+
+Thanks for checking out our site!

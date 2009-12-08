@@ -1,0 +1,14 @@
+.secttitle
+  Share
+  %span
+    [this wisdom]
+.post{:id => "post-#{@post.id}"}
+  =render :partial => 'common/posthead', :locals => {:post => @post, :title_link => false}
+  .postbody
+    :markdown
+      #{h @post.body}
+  =render :partial => 'common/post_tags', :locals => {:post => @post}
+  =render :partial => 'common/postfoot', :locals => {:post => @post, :read_more => false,:comment_link => true}
+.share
+  %a{:name => 'share'}
+  =render :partial => 'email_form'

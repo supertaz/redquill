@@ -1,0 +1,25 @@
+.greeting
+  Dear #{@recipient_name},
+  %br
+  %br
+.mailbody
+  A user of our site, #{@user.firstname} #{@user.lastname}, wanted to share a post with you.  Below are the details
+  of the post and if you just want to visit our site, it's at
+  %a{:href => @siteurl} #{@siteurl}
+  %br
+  %br
+.postdetails
+  Post title: #{@post.title}
+  Post URL:
+  %a{:href => @post.short_url} #{@post.short_url}
+  %br
+  %br
+.usernote
+  Note from #{@user.firstname}:
+  %br
+  %br
+  #{@note}
+  %br
+  %br
+.thankyou
+  Thanks for checking out our site!

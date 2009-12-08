@@ -1,33 +1,20 @@
 .postfoot
   .left
-    %a{:href => '#'}
+    %a{:href => "http://twitter.com/home?status=#{CGI::escape('#DevKoans ' + post.title[0,99] + (post.title.length > 100 ? '... ' : ' ') + post.short_url)}"}
       tweet
     |
-    %a{:href=>'#'}
+    %a{:href=>post_email_url(post)}
       email
-    |
-    -if current_user
-      -if post.poster == current_user
-        =link_to 'edit', edit_post_url(post)
-        |
-        =link_to 'delete', delete_posts_url(:id => post.id), :confirm => 'Are you sure you want to delete this post?  THIS ACTION CAN NOT BE UNDONE!'
-        |
-      -if post.body.length > 850 && !read_more == false
-        =link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
-      -else
-        %a{:href => '#'}
-          comment
-    -else
-      =link_to 'Register', new_user_path, :class => 'auth'
-      or
-      =link_to 'log in', login_path, :class => 'auth'
-      to
-      comment
+    %span.poster{:style => 'display:none'}
+      |
+      =link_to 'edit', edit_post_url(post)
+      |
+      =link_to 'delete', delete_posts_url(:id => post.id), :confirm => 'Are you sure you want to delete this post?  THIS ACTION CAN NOT BE UNDONE!'
+    -if (post.body.length > 850) && read_more
+      |
+      =link_to 'read more', show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
+    -if comment_link && (!read_more || post.body.length <= 850)
+      |
+      %a{:href => new_post_comment_url(post, :anchor => 'new_comment')}
+        comment
   .right
-    -if post.comments_count > 0
-      =link_to "#{post.comments_count} comments", show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug, :anchor => 'comments')
-      - last_comment = post.comments[post.comments_count - 1]
-      (last comment on #{Date::MONTHNAMES[last_comment.created_at.month]} #{last_comment.created_at.day.to_s.rjust(2, '0')}, #{last_comment.created_at.year}
-      at #{last_comment.created_at.hour.to_s.rjust(2, '0')}:#{last_comment.created_at.min.to_s.rjust(2, '0')} #{last_comment.created_at.zone})
-    -else
-      no comments

@@ -1,0 +1,38 @@
+- form_tag post_email_url(@post), :method =>:post do
+  .form
+    .title
+      Share this post with someone
+    -unless current_user
+      %p
+        =label_tag :sender_first_name, 'Your First Name (required)'
+        %br
+        =text_field_tag :sender_first_name, @sender_first_name, :size => 50
+      %p
+        =label_tag :sender_last_name, 'Your Last Name (required)'
+        %br
+        =text_field_tag :sender_last_name, @sender_last_name, :size => 50
+      %p
+        =label_tag :sender_email, 'Your Email (required)'
+        %br
+        =text_field_tag :sender_email, @sender_email, :size => 50
+    %p
+      =label_tag :recipient_name, 'Recipient Name:'
+      %br
+      =text_field_tag :recipient_name, @recipient_name, :size => 50
+    %p
+      =label_tag :recipient_email, 'Recipient Email:'
+      %br
+      =text_field_tag :recipient_email, @recipient_email, :size => 50
+    %p
+      =label_tag :note, 'Note:'
+      %br
+      =text_area_tag :note, @note, :rows => 5, :style => 'width:589px'
+    .clear
+    .center
+      %p.captcha
+        %br
+        = recaptcha_tags
+        %br
+      %p
+        =submit_tag :submit
+        %br

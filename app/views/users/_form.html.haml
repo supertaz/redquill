@@ -1,32 +1,61 @@
 - form_for @user do |f|
-  = f.error_messages
-  %p
-    = f.label :username, 'Username (public - NOT an email)'
-    %br
-    = f.text_field :username
-  %p
-    = f.label :firstname, "First name (public)"
-    %br
-    = f.text_field :firstname
-  %p
-    = f.label :lastname, "Last name (public)"
-    %br
-    = f.text_field :lastname
-  %p
-    = f.label :nickname, "Nickname (public)"
-    %br
-    = f.text_field :nickname
-  %p
-    = f.label :email, "Email (private)"
-    %br
-    = f.text_field :email
-  %p
-    = f.label :password, "Password"
-    %br
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation, "Confirm Password"
-    %br
-    = f.password_field :password_confirmation
-  %p
-    = f.submit "Submit"
+  .form
+    .title
+      Edit your profile
+    .errors
+      =f.error_messages
+    .left
+      %p
+        -if @user.id.nil?
+          = f.label :username, 'Username (public - NOT an email)'
+          %br
+          = f.text_field :username
+        -else
+          = f.label :username, 'Username'
+          %br
+          %span &nbsp;&nbsp;#{@user.username}
+      %p
+        = f.label :firstname, "First name (public)"
+        %br
+        = f.text_field :firstname
+      %p
+        = f.label :lastname, "Last name (public)"
+        %br
+        = f.text_field :lastname
+      %p
+        = f.label :nickname, "Nickname (public)"
+        %br
+        = f.text_field :nickname
+      %p
+        = f.label :password, "Password (encrypted)"
+        %br
+        = f.password_field :password
+      %p
+        = f.label :password_confirmation, "Confirm Password"
+        %br
+        = f.password_field :password_confirmation
+    .right
+      .vspace{:style => 'height: 2.3em'}
+      %p
+        =f.label :twitter_username, "Twitter username (public)"
+        %br
+        =f.text_field :twitter_username, :size => 40
+      %p
+        =f.label :user_url, "Website or blog (public)"
+        %br
+        =f.text_field :user_url, :size => 40
+    .clear
+    .center
+      .biofield{:style=>'text-align: left'}
+        %p
+          = f.label :bio, "Tell us a bit about yourself (public)"
+          %br
+          = f.text_area :bio, :cols => 73, :style => 'width:589px'
+          %br
+          %br
+      %p.captcha
+        %br
+        = recaptcha_tags
+        %br
+      %p
+        = f.submit "Submit"

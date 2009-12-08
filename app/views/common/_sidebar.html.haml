@@ -1,21 +1,17 @@
-.section
+.section#sitenav
   .secthead
     Navigation
   .sectbody
     %p
-      =link_to 'Latest Entries', root_url
+      =link_to 'Latest Entries', post_url(:id => 'all')
     %p
-      =link_to 'About this Blog', about_url
-    %p
-      %a{:href=>bio_path}
+      %a{:href=>user_path(owner_user)}
         Who
         %i
           %b is
-        this guy?
+        this guy anyway?
     %p
-      %a{:href=>'#'}Contact Me
-    -if current_user && (current_user.has_role? 'poster')
-      =link_to 'Create a new post', new_post_url
+      %a{:href=>user_email_url(owner_user)}Contact Me
 -counts = counts_for_archive
 -unless counts.empty?
   .section
@@ -36,9 +32,9 @@
         =link_to "#{tag.name}&nbsp; ", tag_search_path(:action => :tag, :tag_name => tag.name), :class => css_class
 .section
   .secthead
-    Recent Tweets
-  .sectbody
-    %p A recent tweet
-    %p.tweet Another recent tweet
-    %p.tweet A longer tweet about how great OAuth is and how much we like social media and Twitter and such
-    %p.tweet Tweet.
+    As Seen On Twitter
+  .sectbody{:id => 'tweetstream'}
+    %p.twitter
+      %img#twitterpic{:align => 'left', :style => 'display:none'}
+      %a{:href => "http://twitter.com/jmischo"} I'm @jmischo on Twitter. Click here to read my tweets or follow me!
+    .clear

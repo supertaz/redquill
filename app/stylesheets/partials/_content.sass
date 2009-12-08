@@ -4,22 +4,92 @@
 #content
   +column(18)
   :background = !content_background_color
-  +rounded(5px)
+  :color = !content_text_color
   .secttitle
     +small_caps
-    :font-size 1.5em
-    :padding-left .5em
-    :margin-bottom .15em
+    :font-size 2em
+    :padding-top .5em
+    :margin-bottom .5em
     span
       :font-size .75em
       :color #666
   .pagination
     +safe_padding
-    +column(16)
+    +column(17)
     :text-align center
-    :color #999
+    :margin-bottom 1em
     .current
-      :color = !darker_accent_color
+      :color = !pagination_current
     a
       +no_dec
-      :color = !darker_support_color
+      :color = !pagination_link
+  .vspace
+    :height 450px
+  pre
+    :padding .5em
+    :margin .5em
+    :background-color = !code_background_color
+    :font-size .8em
+    :border = "1px solid" !code_border_color
+  .form
+    +column(15)
+    :background-color = !comment_form_background
+    :padding .9em
+    :margin-bottom 2em
+    +small_caps
+    a
+      :font-size 1.1em
+      +no_dec
+      :color = !comment_link_color
+    span
+      :color = !comment_header_text
+      :margin-bottom .5em
+    .title
+      :border-bottom = "1px solid" !comment_header_text
+      :color = !comment_header_text
+      +small_caps
+      +capitalize
+      :font-size 1.5em
+      :margin-bottom .75em
+    .left
+      +column(7)
+    .right
+      +column(7)
+    .errors
+      +column(15)
+      :text-align center
+      :color #ff0000
+    .center
+      +column(15)
+      :text-align center
+      :padding-top 1.5em
+      p.captcha
+        +column(3)
+        :padding-left 1em
+  .share
+    +column(17)
+    :padding-left 3em
+  .bio
+    +column(17)
+    :padding .9em
+    :margin-bottom 2em
+    +small_caps
+    img
+      :margin-bottom 1em
+    span
+      :color = !comment_header_text
+      :margin-bottom .5em
+    .title
+      :border-bottom = "1px solid" !comment_header_text
+      :color = !comment_header_text
+      +small_caps
+      +capitalize
+      :font-size 1.5em
+      :margin-bottom .75em
+    .left
+      +column(6)
+      :padding-left 1em
+    .right
+      +column(10)
+      .bioinfo
+        :padding-left .5em

@@ -8,5 +8,4 @@ module ApplicationHelper
   def counts_for_archive
     Post.counts_by_month
   end
-
 end

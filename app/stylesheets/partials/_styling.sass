@@ -1,16 +1,41 @@
-@import partials/theme.sass
-
-!background_color = #fff
-!main_background_color = #fff
-!header_background_color = !lightest_base_color
-!usernav_background_color = !main_background_color
+!main_background_color = #080851
+!header_background_color = #00559e
+!header_divider_color = #003c70
+!header_contrast_color = #5dcaf1
+!header_text_color = #fff
+!header_link_color = !header_contrast_color
+!usernav_background_color = !header_background_color
 !footer_background_color = !main_background_color
+!footer_contrast_color = !header_link_color
+!footer_text_color = !header_text_color
 
 // livearea includes #content and #sidebar
-!livearea_background_color = !main_background_color
-!content_background_color = !main_background_color
-!sidebar_background_color = !main_background_color
+!livearea_background_color = #fff
+!livearea_contrast_color = #249fa7
+!content_background_color = !livearea_background_color
+!content_header_color = #003281
+!content_text_color = #5a5a5a
+!sidebar_background_color = !livearea_background_color
+!section_header_text = #004878
+!sidebar_link_color = #00749e
 !divider_color = "lightgray"
+
+!post_header_text = #016e95
+!post_header_accent = #3daad1
+!post_footer_accent = #888
+!post_tag_color = !post_header_text
+
+!comment_background_color = !livearea_background_color
+!comment_header_text = !post_header_text
+!comment_link_color = !post_header_accent
+!comment_form_background = #d9deff
+
+!code_background_color = #d9e5ff
+!code_border_color = #b9c5df
+
+
+!pagination_current = !content_header_color
+!pagination_link = !post_tag_color
 
 
 =base_style

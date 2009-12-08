@@ -1,2 +1,8 @@
 by
-%a{:href=>'#'}#{byline.firstname} #{byline.lastname}
+-if defined? guest_name && guest == true
+  -if guest_url != '' && !guest_url.nil?
+    %a{:href=>guest_url} #{guest_name}
+  -else
+    #{guest_name}
+-else
+  %a{:href=>user_path(byline)}#{byline.firstname} #{byline.lastname}

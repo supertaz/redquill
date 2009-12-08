@@ -1,0 +1,48 @@
+- form_for @comment, :url => create_post_comments_url(@comment.post) do |f|
+  .form
+    .title
+      Leave your words behind
+    .errors
+      =f.error_messages
+    -unless current_user
+      %p
+        Note: You're not logged in, so you're commenting as a guest.
+        Would you prefer to
+        %a{:href => login_url} log in
+        or
+        %a{:href => new_user_url} register
+        before you comment?
+        %br
+        %br
+      %p
+        =f.label :guest_name, 'Your Name (required)'
+        %br
+        =f.text_field :guest_name, :size => 50
+      %p
+        =f.label :guest_email, 'Your Email (required)'
+        %br
+        =f.text_field :guest_email, :size => 50
+      %p
+        =f.label :guest_url, 'Your Website (optional)'
+        %br
+        =f.text_field :guest_url, :size => 75
+    %p
+      =f.label :title, 'Subject:'
+      %br
+      =f.text_field :title, :size => 75
+    %p
+      =f.label :title, 'Comment:'
+      %br
+      =f.text_area :body, :style => 'width:589px'
+    .clear
+    .center
+      %p.captcha
+        %br
+        = recaptcha_tags
+        %br
+      %p
+        =f.hidden_field :commenter_id
+        =f.hidden_field :guest
+        =f.hidden_field :in_reply_to_seqno
+        =f.submit :submit
+        %br

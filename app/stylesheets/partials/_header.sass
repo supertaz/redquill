@@ -1,31 +1,43 @@
+#head_color
+  :background-color = !header_background_color
+  :height 7em
+  :padding 0em
+  :border-bottom = "2px solid" !header_divider_color
+  :display block
 #header
   +column(!blueprint_grid_columns)
-  :background-color = !background_color
   +small_caps
   :margin-bottom 5px
   :height 6em
-  :border-bottom 3px double #ccc
 #identityarea
-  +column(!blueprint_grid_columns - 6)
-  :margin-top 5px
+  +column(!blueprint_grid_columns - 10)
+  :margin-top 3px
   :text-align left
+  :color = !header_text_color
   h1
-    :font-size 3em
+    :font-size 4em
   span
-    :color = !darker_base_color
+    :color = !header_contrast_color
   .tagline
     +capitalize
     +italics
     :font-size 1.1em
-    :color #666
+    :color = !header_text_color
     :padding-left .25em
 #usernav
-  +column(6, true)
-  +rounded-bottom(5px)
+  +column(10, true)
   :background-color = !usernav_background_color
-  :text-align center
-  :padding-bottom 2px
-  :color #666
+  :text-align right
+  :padding .5em 0em 2px 0em
+  :color = !header_text_color
+  input
+    :height 1.25em
+    :width 5.2em
+    :font-size .75em
+    :padding .2em
+    :border 1px solid #bbb
+    :margin 0px
   a
     +no_dec
-    :color = !darker_support_color
+    :color = !header_link_color
+    :font-weight bold

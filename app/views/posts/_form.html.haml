@@ -1,14 +1,18 @@
--form_for @post do |f|
-  =f.error_messages
-  %p
-    =f.label :title
-    %br
-    =f.text_field :title, :size => 95
-  %p
-    =f.label :tag_list, 'Tag List'
-    %br
-    =f.text_field :tag_list, :size => 95
-  %p
-    =f.text_area :body, :cols => 80, :class => 'editor'
-  %p
-    =f.submit :submit
+.sectitle
+  Create a New Post
+.form
+  -form_for @post do |f|
+    .errors
+      =f.error_messages
+    %p
+      =f.label :title
+      %br
+      =f.text_field :title, :size => 70
+    %p
+      =f.label :tag_list, 'Tag List'
+      %br
+      =f.text_field :tag_list, :size => 70
+    %p
+      =f.text_area :body, :cols => 70, :class => 'editor'
+    %p
+      =f.submit :submit

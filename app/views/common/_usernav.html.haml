@@ -1,0 +1,15 @@
+-if current_user
+  =link_to "edit your profile", edit_user_path(:current)
+  %i or
+  =link_to "log out", logout_path
+-else
+  - form_for :user_session, :url => user_sessions_url do |f|
+    = f.error_messages
+    username:
+    = f.text_field :username
+    password:
+    = f.password_field :password
+    %i
+      =link_to "&nbsp;log in", login_path, :class => 'login_link'
+      |
+      =link_to "register", new_user_path

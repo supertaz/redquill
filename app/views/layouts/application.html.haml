@@ -22,30 +22,24 @@
     /[if IE]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
   %body.styled
-    #container
-      #header
-        #identityarea
-          .nest
-            %h1
-              ="<span class='titlecolor'>Dev</span>Koans"
-            .tagline A thought-provoking blog of things I know might be true
-        #usernav
-          -if current_user
-            =link_to "Edit Your Profile", edit_user_path(:current)
-            %i or
-            =link_to "Log Out", logout_path
-          -else
-            =link_to "Log In", login_path
-            %i or
-            =link_to "Create an Account", new_user_path
-      #livearea
-        #content
-          .nest
+    #head_color
+      .container
+        #header
+          #identityarea
+            .nest
+              %h1
+                ="<span class='titlecolor'>Dev</span>Koans"
+              .tagline A thought-provoking blog of things I know might be true
+          #usernav
+    #live_color
+      .container
+        #livearea
+          #content
             =yield
-        #sidebar
-          .nest
+          #sidebar
             -unless @skip_sidebar == true
               =render :partial => 'common/sidebar'
-      #footer
-        .nest
+    #foot_color
+      .container
+        #footer
           Design and all contents of this website &copy; 2009#{DateTime::now().year == 2009 ? '' : " - #{DateTime::now().year}"} Jonathan D. Mischo  All rights reserved.

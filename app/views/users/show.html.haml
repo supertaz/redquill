@@ -1,0 +1,30 @@
+.secttitle
+  Aren't We Just Exciting?
+.bio
+  .title
+    #{@user.firstname} #{@user.lastname}'s Profile
+  .left
+    =image_tag @user.gravatar_url(:rating => 'PG', :size => 220, :default => 'identicon')
+    %p
+      %span Username
+      %br
+      &nbsp;&nbsp;#{@user.username}
+    %p
+      %span Real name
+      %br
+      &nbsp;&nbsp;#{@user.firstname} "#{@user.nickname}" #{@user.lastname}
+    %p
+      %span Twitter username
+      %br
+      &nbsp;&nbsp;#{@user.twitter_username}
+    %p
+      %span Website
+      %br
+      &nbsp;&nbsp;#{@user.user_url}
+  .right
+    %p
+      %span Bio
+      %br
+      .bioinfo
+        :markdown
+          #{@user.bio}

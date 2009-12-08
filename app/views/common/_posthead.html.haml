@@ -1,7 +1,7 @@
 .posthead
   .title
     -if title_link
-      =link_to post.title, show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
+      =link_to post.title, post.permanent_url
     -else
       #{post.title}
   .datetime

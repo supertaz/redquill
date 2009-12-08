@@ -1,0 +1,14 @@
+.secttitle
+  Contribute
+  %span
+    [your wisdom]
+.post{:id => "post-#{@post.id}"}
+  =render :partial => 'common/posthead', :locals => {:post => @post, :title_link => false}
+  .postbody
+    :markdown
+      #{h @post.body}
+  =render :partial => 'common/post_tags', :locals => {:post => @post}
+  =render :partial => 'common/postfoot', :locals => {:post => @post, :read_more => false,:comment_link => true}
+.comments
+  %a{:name=>'new_comment'}
+  = render :partial => 'form'

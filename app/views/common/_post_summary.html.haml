@@ -1,4 +1,4 @@
-.post
+.post{:id => "post-#{post.id}"}
   =render :partial => 'common/posthead', :locals => {:post => post, :title_link => true}
   .postbody
     -if post.body.length > 850
@@ -10,5 +10,5 @@
     -else
       :markdown
         #{h post.body}
-    =render :partial => 'common/post_tags', :locals => {:post => post}
-  =render :partial => 'common/postfoot', :locals => {:post => post, :read_more => true}
+  =render :partial => 'common/post_tags', :locals => {:post => post}
+  =render :partial => 'common/postfoot', :locals => {:post => post, :read_more => true, :comment_link => true}

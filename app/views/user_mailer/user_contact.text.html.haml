@@ -1,0 +1,20 @@
+.greeting
+  Dear #{@target_user.firstname},
+  %br
+  %br
+.notification
+  A DevKoans user wanted to send you a message, so we're passing it along to you!
+  %br
+  %br
+  User Name:    #{@sender_name}
+  %br
+  User Email:   #{@sender_email}
+  %br
+  %br
+.message
+  Message Subject: #{@email_subject}
+  %br
+  %br
+  Message:
+  %br
+  #{@message}

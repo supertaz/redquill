@@ -1,0 +1,5 @@
+#{comment_opinions.agreed > 0 ? "#{pluralize comment_opinions.agreed, 'person'}" : 'no one agrees'}
+#{comment_opinions.agreed > 0 ? "#{comment_opinions.agreed > 1 ? ' agree' : ' agrees'}" : ''}
+|
+#{comment_opinions.disagreed > 0 ? "#{pluralize comment_opinions.disagreed, 'person'}" : 'no one disagrees'}
+#{comment_opinions.disagreed > 0 ? "#{comment_opinions.disagreed > 1 ? ' disagree' : ' disagrees'}" : ''}

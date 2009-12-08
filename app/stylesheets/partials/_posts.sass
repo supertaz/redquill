@@ -1,22 +1,18 @@
 .post
-  +safe_padding
   .posthead
-    +column(16)
-    +rounded-top(5px)
+    +column(17)
     +safe_padding
-    :background-color = !darker_base_color
-    :border-top = "1px solid" !darker_base_color
-    :border-left = "1px solid" !darker_base_color
-    :border-right = "1px solid" !darker_base_color
+    :color = !post_header_text
+    :border-bottom = "2px solid" !post_header_text
     .title
-      +column(13)
+      +column(14)
       :vertical-align middle
       +small_caps
-      :color #fff
+      :color = !post_header_text
       +capitalize
       :font-size 1.25em
       a
-        :color #fff
+        :color = !post_header_text
         +no_dec
     .datetime
       +column(3, true)
@@ -24,53 +20,48 @@
       :vertical-align bottom
       +italics
       :font-size .85em
-      :color = !lightest_accent_color
+      :color = !post_header_text
     .poster
       a
         +no_dec
-        :color = !light_base_color
+        :color = !post_header_accent
   .postbody
-    +column(16)
+    +column(17)
     +safe_padding
-    :border-left 1px solid #ccc
-    :border-right 1px solid #ccc
-    :border-bottom 1px solid #ccc
-    +rounded-bottom(5px)
     a
-      :color = !darker_support_color
+      :color = !post_header_accent
       +no_dec
-    span
-      a
-        :color = !darker_base_color
-        +no_dec
-        +italics
-        :font-size .9em
-        +small_caps
-        +capitalize
-    p.tags
-      +italics
-      :color #666
-      :font-size .8em
-      :padding-top .4em
-  .postfoot
-    +column(16)
+  .tags
+    +column(17)
     +safe_padding
     +italics
-    :margin-bottom 5px
+    :border-bottom = "1px solid" !post_footer_accent
+    :color #666
+    :font-size .8em
+    a
+      :color = !post_tag_color
+      +no_dec
+      +italics
+    :padding-top .4em
+  .postfoot
+    +column(17)
+    +safe_padding
+    +italics
+    :margin-bottom 2em
     :color #666
     :text-align right
     :font-size .9em
     .left
-      +column(7)
+      +column(8)
       :text-align left
     .right
       +column(9,true)
       :text-align right
     a.auth
-      :color = !darker_support_color
+      :color = !post_header_text
       +no_dec
     a
-      :color = !darker_accent_color
+      :color = !post_header_text
       +no_dec
     span
-      :color = !darker_base_color
+      :color = !post_header_accent

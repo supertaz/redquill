@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -18,19 +18,25 @@ STORE_LOCATION_METHOD = :store_location
 
 Rails::Initializer.run do |config|
 
-  config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com'
+  config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
+
   config.gem 'haml', :version => '>=2.2.13'
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>=2.3.11', :source => 'http://gems.github.com'
-  config.gem 'ruby-openid', :lib => 'openid', :version => '>=2.1.7'
-  config.gem 'oauth', :version => '>= 0.3.6'
-  config.gem 'oauth-plugin', :version => '>= 0.3.14'
+  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>=2.3.11'
   config.gem 'authlogic', :version => '>=2.1.3'
   config.gem 'syntax', :version => '>= 1.0.0'
   config.gem 'maruku', :version => '>= 0.6.0'
-  config.gem "acts-as-taggable-on", :version => '>=1.0.8', :source => "http://gemcutter.org"
+  config.gem 'acts-as-taggable-on', :version => '>=1.0.8', :source => "http://gemcutter.org"
+  config.gem 'bitly', :version => '>=0.3.2'
+  config.gem 'ambethia-recaptcha', :version => '>=0.2.2', :lib => "recaptcha/rails"
+  config.gem 'nokogiri', :version => '>=1.3.3'
+  config.gem 'sanitize', :version => '>=1.1.0'
+  config.gem 'gravtastic', :version => '>= 2.1.3'
 
   config.time_zone = 'Central Time (US & Canada)'
 
   config.active_record.observers = :user_observer
 
+  config.action_mailer.default_url_options = "www.devkoans.com"
+
+  config.action_controller.page_cache_directory = RAILS_ROOT + "/page_cache"
 end
