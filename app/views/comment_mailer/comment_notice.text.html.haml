@@ -1,5 +1,5 @@
 .greeting
-  Dear #{@firstnsme},
+  Dear #{@comment.post.poster.firstname},
   %br
   %br
 .mailbody
@@ -11,5 +11,5 @@
   %br
   Post URL:
   %a{:href => @comment.post.short_url} #{@comment.post.short_url}
-  Comment title: #{@comment.title}
   %br
+  Comment title: #{@comment.title}

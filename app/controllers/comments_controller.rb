@@ -25,8 +25,14 @@ class CommentsController < ApplicationController
   def create
     if verify_recaptcha(:model => @comment, :message => 'Oops!  Did you get those verification words right?')
       post = Post.find(params[:post_id])
-      post.comments.create(params[:comment])
+      comment = post.comments.create(params[:comment])
+      CommentMailer.deliver_comment_notice(comment)
       redirect_to show_posts_url(:year => post.created_at.year, :month => post.created_at.month, :day => post.created_at.day, :slug => post.slug)
+    else
+      @post = Post.find(params[:post_id])
+      @comment = Comment.new(params[:comment])
+      @comment.post = @post
+      render 'new'
     end
   end
 end
