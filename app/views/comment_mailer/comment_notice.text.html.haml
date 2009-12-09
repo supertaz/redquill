@@ -1,0 +1,15 @@
+.greeting
+  Dear #{@firstnsme},
+  %br
+  %br
+.mailbody
+  Somebody commented on your post, so this is a friendly reminder to go check it out!
+  %br
+  %br
+.postdetails
+  Post title: #{@comment.post.title}
+  %br
+  Post URL:
+  %a{:href => @comment.post.short_url} #{@comment.post.short_url}
+  Comment title: #{@comment.title}
+  %br

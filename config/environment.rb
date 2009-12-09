@@ -1,4 +1,6 @@
-RAILS_ENV = ENV['RAILS_ENV'] || 'production'
+unless defined? RAILS_ENV
+  RAILS_ENV = ENV['RAILS_ENV'] || 'production'
+end
 
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
