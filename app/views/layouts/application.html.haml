@@ -11,13 +11,8 @@
     %link{ :rel=>'icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %meta{ :name=>'keywords', :content=>'' }
     %meta{ :name=>'description', :content=>'' }
-    = javascript_include_tag 'jquery-1.3.2.min'
-    = javascript_include_tag 'jquery.markitup'
-    = javascript_include_tag 'markitup-markdown-set'
-    = javascript_include_tag 'application'
-    = stylesheet_link_tag 'markitup-markdown'
-    = stylesheet_link_tag 'markitup-skin'
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = javascript_include_tag 'jquery-1.3.2.min', 'jquery.markitup', 'markitup-markdown-set', 'application', :cache => 'cache/all'
+    = stylesheet_link_tag 'markitup-markdown', 'markitup-skin', 'screen.css', :cache => 'cache/visual', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'

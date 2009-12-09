@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  caches_page   :index, :new, :show, :tag
+  caches_page   :index, :show, :tag
   cache_sweeper :post_sweeper, :only => [:create, :update, :delete]
 
   before_filter :require_user, :only => [:new, :edit, :create, :update]
