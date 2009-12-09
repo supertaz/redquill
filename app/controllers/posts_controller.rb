@@ -5,7 +5,13 @@ class PostsController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :create, :update]
 
   def index
-    redirect_to show_posts_url(:year => 'all')
+    respond_to do |format|
+      format.html {redirect_to show_posts_url(:year => 'all')}
+      format.atom {
+        @posts = Post.by_age
+        render :atom => @posts
+      }
+    end
   end
 
   def new

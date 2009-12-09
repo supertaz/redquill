@@ -23,6 +23,8 @@ class PostSweeper < ActionController::Caching::Sweeper
     unless cache_dir == RAILS_ROOT+"/public"
       FileUtils.rm_r(Dir.glob(cache_dir+"/posts")) rescue Errno::ENOENT
       RAILS_DEFAULT_LOGGER.info("Cache directory '#{cache_dir}/posts' fully swept.")
+      FileUtils.rm_r(Dir.glob(cache_dir + '/posts.atom')) rescue Errno::ENOENT
+      RAILS_DEFAULT_LOGGER.info("Feed '#{cache_dir}/posts.atom' swept.")
     end
   end
 end

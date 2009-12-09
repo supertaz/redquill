@@ -13,6 +13,8 @@
     span
       :font-size .75em
       :color #666
+    a
+      +no_dec
   .pagination
     +safe_padding
     +column(17)
@@ -56,11 +58,11 @@
     .right
       +column(7)
     .errors
-      +column(15)
+      +column(14)
       :text-align center
       :color #ff0000
     .center
-      +column(15)
+      +column(14)
       :text-align center
       :padding-top 1.5em
       p.captcha
