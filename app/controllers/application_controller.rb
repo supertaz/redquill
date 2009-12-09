@@ -27,11 +27,7 @@ private
   end
 
   def page_title(new_title = nil)
-    unless new_title.nil?
-      @page_title = new_title
-    else
-      @page_title
-    end
+    @page_title = "#{DEFAULT_SITE_NAME} - #{new_title.nil? ? DEFAULT_TITLE : new_title}"
   end
 
   def redirect_back_or_default(default)
