@@ -1,6 +1,9 @@
 - page_title 'Create a New Post'
 .secttitle
-  Create a New Post
+  -if controller.action_name == 'new'
+    Create a New Post
+  -else
+    Edit Post
 .form
   -form_for @post do |f|
     .errors
