@@ -10,15 +10,15 @@ class AjaxController < ApplicationController
     json_response = Hash.new()
     json_response[:logged_in] = current_user ? true : false
     if current_user then
-      comment = Comment.find(params[:cid])
+      @comment = Comment.find(params[:cid])
       case params[:o]
         when 'a'
-          comment.agree(current_user)
+          @comment.agree(current_user)
         when 'd'
-          comment.disagree(current_user)
+          @comment.disagree(current_user)
       end
-      comment.save
-      json_response[:opinion_div_id] = "#opinions-#{comment.id}"
+      @comment.save
+      json_response[:opinion_div_id] = "#opinions-#{@comment.id}"
       json_response[:opinion_data] = render_to_string 'common/_comment_opinions_wrapper'
     end
     render :json => json_response
