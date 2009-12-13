@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
 
   attr_readonly :seqno
 
-  def agree(user)
+  def agree!(user)
     if self.opinions.user(user).count == 0
       self.agreed += 1
       self.save
@@ -26,7 +26,7 @@ class Comment < ActiveRecord::Base
     end
   end
 
-  def disagree(user)
+  def disagree!(user)
     if self.opinions.user(user).count == 0
       self.disagreed += 1
       self.save

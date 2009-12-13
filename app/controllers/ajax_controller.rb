@@ -13,11 +13,10 @@ class AjaxController < ApplicationController
       @comment = Comment.find(params[:cid])
       case params[:o]
         when 'a'
-          @comment.agree(current_user)
+          @comment.agree!(current_user)
         when 'd'
-          @comment.disagree(current_user)
+          @comment.disagree!(current_user)
       end
-      @comment.save
       json_response[:opinion_div_id] = "#opinions-#{@comment.id}"
       json_response[:opinion_data] = render_to_string 'common/_comment_opinions_wrapper'
     end
