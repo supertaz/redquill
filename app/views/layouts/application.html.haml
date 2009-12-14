@@ -11,7 +11,7 @@
     %link{ :rel=>'icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     = auto_discovery_link_tag(:atom, '/posts.atom', :title => 'DevKoans Atom Feed')
     = yield :before_default_js
-    = javascript_include_tag 'jquery-1.3.2.min', 'application', :cache => 'cache/all'
+    = javascript_include_tag 'jquery-1.3.2.min', 'application-config', 'application', :cache => 'cache/all'
     = yield :after_default_js
     = yield :before_default_css
     = stylesheet_link_tag 'screen.css', :cache => 'cache/visual', :media => 'screen, projection'

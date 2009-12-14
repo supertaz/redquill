@@ -26,6 +26,6 @@ SiteBitly = Bitly.new('bitly_username', 'bitly_API_key')
 
 
 
-in public/javascripts/application_config.js:
+in public/javascripts/application-config.js:
 
 var baseURLforSite = "http://my.domain.tld:my_port/"
