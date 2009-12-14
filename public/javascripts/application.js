@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var baseURLforJSON = "http://localhost:3000/json/";
+    var baseURLforJSON = baseURLforSite + "json/";
     var regExp = new RegExp("[0-9]+");
 
     var opinionURL = baseURLforJSON + "opinion/";
@@ -50,8 +50,6 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $(".editor").markItUp(mySettings);
-
     var tweetsURL = "http://twitter.com/status/user_timeline/jmischo.json?count=10&callback=?";
      $.getJSON(tweetsURL, function(data){
           $.each(data, function(i, item) {

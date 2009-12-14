@@ -1,3 +1,7 @@
+-content_for :after_default_js do
+  =javascript_include_tag 'jquery.markitup', 'markitup-markdown-set', 'application-markitup', :cache => 'cache/markitup'
+-content_for :before_default_css do
+  = stylesheet_link_tag 'markitup-markdown', 'markitup-skin', :cache => 'cache/markitup'
 - page_title 'Create a New Post'
 .secttitle
   -if controller.action_name == 'new'
