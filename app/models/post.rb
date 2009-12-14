@@ -19,6 +19,7 @@ class Post < ActiveRecord::Base
 
   named_scope :in_list, lambda{ |list| {:conditions => ["posts.id in (#{list})"]}}
   named_scope :by_age, {:order => "posts.id DESC"}
+  named_scope :recent, {:order => "posts.id DESC", :limit => 10}
   named_scope :by_year, lambda { |year| {:conditions => ["local_date like '#{year}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
   named_scope :by_month, lambda { |year, month| {:conditions => ["local_date like '#{year}-#{month.to_s.rjust(2, '0')}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
   named_scope :by_slug, lambda { |slug| {:conditions => ["title_hash = ?", Digest::MD5.hexdigest(slug)], :include => [:poster, :tags, :comments]}}
@@ -91,4 +92,5 @@ class Post < ActiveRecord::Base
     self.short_url=SiteBitly.shorten(self.permanent_url).short_url
     self.save
   end
+
 end

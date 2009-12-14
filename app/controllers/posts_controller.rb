@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to show_posts_url(:year => 'all')}
       format.atom {
-        @posts = Post.by_age
+        @posts = Post.recent
         render :atom => @posts
       }
     end
