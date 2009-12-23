@@ -27,41 +27,76 @@ class PostsController < ApplicationController
     if current_user && (current_user.is_poster? || current_user.is_admin?)
       @post = Post.create(params[:post])
       @post.poster = current_user
+      if params[:commit] == "Publish"
+        @post.draft = false
+      else
+        @post.draft = true
+      end
       if @post.save
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+        if @post.draft?
+          redirect_to show_draft_url(@post)
+        else
+          @post.publish!
+          redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
+        end
       else
         render '_form'
       end
     else
-      redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+      redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
     end
   end
 
   def edit
     @post = Post.find(params[:id])
-    if current_user
-      if @post.poster.id == current_user.id
+    if current_user && (@post.poster.id == current_user.id || current_user.is_admin?)
         render '_form'
-      else
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
-      end
     else
-      redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+      unless @post.draft?
+        redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
+      else
+        redirect_to show_posts_url(:year => 'all')
+      end
     end
   end
 
   def update
     @post = Post.find(params[:id])
     if current_user
-      if @post.poster.id = current_user.id && @post.update_attributes(params[:post])
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
-      elsif @post.poster.id = current_user.id
-        render 'edit'
+      if @post.draft?
+        was_draft = true
       else
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+        was_draft = false
+      end
+      if params[:commit] == 'Save as draft'
+        @post.draft = true
+      else
+        @post.draft = false
+      end
+      if (@post.poster.id == current_user.id || current_user.is_admin?) && @post.update_attributes(params[:post])
+        unless @post.draft?
+          if was_draft
+            @post.publish!
+          end
+          redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
+        else
+          redirect_to show_draft_url(@post)
+        end
+      elsif @post.poster.id == current_user.id || current_user.is_admin?
+        render '_form'
+      else
+        unless @post.draft?
+          redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
+        else
+          redirect_to show_posts_url(:year => 'all')
+        end
       end
     else
-      redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+      unless @post.draft?
+        redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
+      else
+        redirect_to show_posts_url(:year => 'all')
+      end
     end
   end
 
@@ -116,11 +151,11 @@ class PostsController < ApplicationController
       if @post.poster == current_user || current_user.is_admin?
         @post.destroy
       else
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+        redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
       end
       redirect_to show_posts_url(:year => 'all')
     else
-      redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+      redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
     end
   end
 
@@ -140,7 +175,7 @@ class PostsController < ApplicationController
                                       Sanitize.clean(params[:recipient_name]),
                                       Sanitize.clean(params[:recipient_email]),
                                       Sanitize.clean(params[:note]))
-        redirect_to show_posts_url(:year => @post.created_at.year, :month => @post.created_at.month, :day => @post.created_at.day, :slug => @post.slug)
+        redirect_to show_posts_url(:year => @post.published_at.year, :month => @post.published_at.month, :day => @post.published_at.day, :slug => @post.slug)
       else
         @sender_first_name = params[:sender_first_name]
         @sender_last_name = params[:sender_last_name]
@@ -153,22 +188,43 @@ class PostsController < ApplicationController
     end
   end
 
+  def list_drafts
+    if current_user && (current_user.is_poster? || current_user.is_admin?)
+      @posts = Post.drafts(current_user).paginate(:page => params[:page], :per_page => 5)
+      render 'list'
+    else
+      redirect_to show_posts_url(:year => 'all')
+    end
+  end
+
+  def show_draft
+    if current_user && (current_user.is_poster? || current_user.is_admin?)
+      @post = Post.drafts(current_user).find(params[:id])
+      render 'show'
+    else
+      redirect_to show_posts_url(:year => 'all')
+    end
+  end
+
   private
 
+#
+# Determine which post is freshest in @posts and use that to set etag and last_modified headers
+#
   def render_post_list
-    oldest_post = Post.new
+    freshest_post = Post.new
     @posts.each do |post|
-      unless oldest_post.created_at.nil?
-        if post.updated_at > oldest_post.updated_at
-          oldest_post = post
+      unless freshest_post.published_at.nil?
+        if post.updated_at > freshest_post.updated_at
+          freshest_post = post
         end
       else
-        oldest_post = post
+        freshest_post = post
       end
     end
     if stale?(
-            :etag => oldest_post,
-            :last_modified => oldest_post.updated_at
+            :etag => freshest_post,
+            :last_modified => freshest_post.updated_at
             )
       render 'list'
     end

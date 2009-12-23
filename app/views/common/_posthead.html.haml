@@ -1,10 +1,13 @@
 .posthead
   .title
     -if title_link
-      =link_to post.title, post.permanent_url
+      -unless post.draft?
+        =link_to "#{h post.title}", post.permanent_url
+      -else
+        =link_to "#{h post.title}", show_draft_url(post)
     -else
-      #{post.title}
+      #{h post.title}
   .datetime
-    =render :partial => 'common/datetime', :object => post
+    =render :partial => 'common/datetime', :object => post.published_at
     .poster
       =render :partial => 'common/byline', :object => post.poster

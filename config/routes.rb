@@ -24,6 +24,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/posts/:year/page/:page', :controller => 'posts', :action => 'show'
   map.show_posts '/posts/:year/:month/:day/:slug', :controller => 'posts', :action => 'show', :slug => nil, :day => nil, :month => nil, :year => nil
 
+  map.list_drafts '/drafts', :controller => 'posts', :action => 'list_drafts'
+  map.show_draft '/drafts/:id', :controller => 'posts', :action => 'show_draft'
+
   map.resources :users, :except => [:list, :destroy] do |user|
     user.email '/email', :controller => 'users', :action => 'email'
   end

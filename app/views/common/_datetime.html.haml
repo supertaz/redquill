@@ -1,4 +1,4 @@
 .date
-  #{Date::MONTHNAMES[datetime.created_at.month]} #{datetime.created_at.day.to_s.rjust(2, '0')}, #{datetime.created_at.year}
+  #{Date::MONTHNAMES[datetime.month]} #{datetime.day.to_s.rjust(2, '0')}, #{datetime.year}
 .time
-  at #{datetime.created_at.hour.to_s.rjust(2, '0')}:#{datetime.created_at.min.to_s.rjust(2, '0')} #{datetime.created_at.zone}
+  at #{datetime.hour.to_s.rjust(2, '0')}:#{datetime.min.to_s.rjust(2, '0')} #{datetime.zone}

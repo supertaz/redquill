@@ -11,23 +11,23 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable_on :tags
 
-  before_save :prepare_save
-  after_create :post_create
-
   attr_readonly :comments_count 
   attr_readonly :title_hash
 
+  named_scope :drafts, lambda { |poster| {:conditions => ["posts.draft = 't' AND posts.poster_id = ?", poster.id], :order => "posts.id ASC"}}
+  named_scope :all_drafts, {:conditions => ["posts.draft = 't'"], :order => "posts.id ASC"}
   named_scope :in_list, lambda{ |list| {:conditions => ["posts.id in (#{list})"]}}
-  named_scope :by_age, {:order => "posts.id DESC"}
-  named_scope :recent, {:order => "posts.id DESC", :limit => 10}
-  named_scope :by_year, lambda { |year| {:conditions => ["local_date like '#{year}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
-  named_scope :by_month, lambda { |year, month| {:conditions => ["local_date like '#{year}-#{month.to_s.rjust(2, '0')}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
-  named_scope :by_slug, lambda { |slug| {:conditions => ["title_hash = ?", Digest::MD5.hexdigest(slug)], :include => [:poster, :tags, :comments]}}
-  named_scope :by_date, lambda { |year, month, day| {:conditions => ["local_date like '#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
+  named_scope :by_age, {:conditions => ["posts.draft = 'f'"], :order => "posts.id DESC"}
+  named_scope :recent, {:conditions => ["posts.draft = 'f'"], :order => "posts.id DESC", :limit => 10}
+  named_scope :by_year, lambda { |year| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
+  named_scope :by_month, lambda { |year, month| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
+  named_scope :by_slug, lambda { |slug| {:conditions => ["posts.draft = 'f' AND title_hash = ?", Digest::MD5.hexdigest(slug)], :include => [:poster, :tags, :comments]}}
+  named_scope :by_date, lambda { |year, month, day| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
   named_scope :by_slug_and_date, lambda { |slug, year, month, day|
                     {
                             :conditions => [
-                                    "title_hash = ?
+                                    "posts.draft = 'f'
+                                     AND title_hash = ?
                                      AND local_date = ?",
                                      Digest::MD5.hexdigest(slug),
                                      "#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}"
@@ -41,10 +41,26 @@ class Post < ActiveRecord::Base
 
   def write_attribute(attr_name, value)
     returning(super) do
-      if attr_name == 'title'
-        self.title_hash = Digest::MD5.hexdigest(value.gsub(/^\W*/, '').gsub(/\W*$/, '').gsub(/\W+/, '-'))
+      case attr_name
+        when 'title'
+          self.title_hash = Digest::MD5.hexdigest(value.gsub(/^\W*/, '').gsub(/\W*$/, '').gsub(/\W+/, '-'))
       end
     end
+  end
+
+  def publish!
+    now = Time.now.getlocal
+    self.local_date = "#{now.year}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
+    self.published_at = now
+    self.short_url=SiteBitly.shorten(self.permanent_url).short_url
+    self.save
+  end
+
+  def unpublish!
+    self.local_date = nil
+    self.published_at = nil
+    self.short_url = nil
+    self.save
   end
 
   def self.counts_by_year
@@ -76,21 +92,9 @@ class Post < ActiveRecord::Base
   end
 
   def permanent_url
-    show_posts_url(:host => DEFAULT_HOST, :year => self.created_at.year, :month => self.created_at.month, :day => self.created_at.day, :slug => self.slug)
+    show_posts_url(:host => DEFAULT_HOST, :year => self.published_at.year, :month => self.published_at.month, :day => self.published_at.day, :slug => self.slug)
   end
 
   private
-
-  def prepare_save
-    if self.local_date.nil?
-      now = DateTime::now()
-      self.local_date = "#{now.year}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
-    end
-  end
-
-  def post_create
-    self.short_url=SiteBitly.shorten(self.permanent_url).short_url
-    self.save
-  end
 
 end

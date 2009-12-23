@@ -3,7 +3,7 @@ $(document).ready(function(){
     var regExp = new RegExp("[0-9]+");
 
     var opinionURL = baseURLforJSON + "opinion/";
-    $(".agree").click(function(){
+    $(".agree", $("#comments")).click(function(){
         var comment_id = regExp.exec($(this).attr("id"));
         $.getJSON(opinionURL + "?cid=" +comment_id + "&o=a", function (data){
             if ($(data.logged_in)){
@@ -11,7 +11,7 @@ $(document).ready(function(){
             }
         });
     });
-    $(".disagree").click(function(){
+    $(".disagree", $("#comments")).click(function(){
         var comment_id = regExp.exec($(this).attr("id"));
         $.getJSON(opinionURL + "?cid=" +comment_id + "&o=d", function (data){
             if ($(data.logged_in)){
@@ -32,14 +32,14 @@ $(document).ready(function(){
         newURL = newURL + "&pid" + pi + "=" + regExp.exec(postids[pi]);
     }
     $.getJSON(newURL, function(data){
-        $("#usernav").append(data.usernav);
-        $("#usernav a.login_link")
+        $("#usernav", $("#header")).append(data.usernav);
+        $("#usernav a.login_link", $("#header"))
                 .attr("href", "#")
                 .click(function(){
                     $("form:first").submit()
                 }
         );
-        $("#sitenav .sectbody").append(data.sitenav);
+        $("#sitenav .sectbody", $("#sidebar")).append(data.sitenav);
         $.each(data.posts, function(i, post){
             if (post.is_poster){
                 $(post.post_div_id + " .poster").show();
@@ -53,10 +53,10 @@ $(document).ready(function(){
     var tweetsURL = "http://twitter.com/status/user_timeline/jmischo.json?count=10&callback=?";
      $.getJSON(tweetsURL, function(data){
           $.each(data, function(i, item) {
-              $("img#twitterpic")
+              $("img#twitterpic", $("#tweetstream"))
                       .attr("src", item.user["profile_image_url"])
                       .show();
-              $("#tweetstream").append("<p class='tweet'>"
+              $("#tweetstream", $("#sidebar")).append("<p class='tweet'>"
                         + item.text
                         + "</p>");
           });

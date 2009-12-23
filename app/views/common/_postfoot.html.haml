@@ -1,20 +1,23 @@
 .postfoot
   .left
-    %a{:href => "http://twitter.com/home?status=#{CGI::escape(post.title[0,99] + (post.title.length > 100 ? '... ' : ' ') + post.short_url + ' #DevKoans')}"}
-      tweet
-    |
-    %a{:href=>post_email_url(post)}
-      email
-    %span.poster{:style => 'display:none'}
+    -unless post.draft?
+      %a{:href => "http://twitter.com/home?status=#{CGI::escape(post.title[0,99] + (post.title.length > 100 ? '... ' : ' ') + post.short_url + ' #DevKoans')}"}
+        tweet
       |
+      %a{:href=>post_email_url(post)}
+        email
+    %span.poster{:style => 'display:none'}
+      -unless post.draft?
+        |
       =link_to 'edit', edit_post_url(post)
       |
       =link_to 'delete', delete_posts_url(:id => post.id), :confirm => 'Are you sure you want to delete this post?  THIS ACTION CAN NOT BE UNDONE!'
-    -if (post.body.length > 850) && read_more
-      |
-      =link_to 'read more', post.permanent_url
-    -if comment_link && (!read_more || post.body.length <= 850)
-      |
-      %a{:href => new_post_comment_url(post, :anchor => 'new_comment')}
-        comment
+    -unless post.draft?
+      -if (post.body.length > 850) && read_more
+        |
+        =link_to 'read more', post.permanent_url
+      -if comment_link && (!read_more || post.body.length <= 850)
+        |
+        %a{:href => new_post_comment_url(post, :anchor => 'new_comment')}
+          comment
   .right

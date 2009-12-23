@@ -5,9 +5,9 @@
       Comment
       %br
       No. #{comment.seqno}
-    .title #{comment.title}
+    .title #{h comment.title}
     .metadata
-      =render :partial => 'common/datetime', :object => comment
+      =render :partial => 'common/datetime', :object => comment.created_at
       .commenter
         -unless comment.guest?
           =render :partial => 'common/byline', :object => comment.commenter
@@ -16,5 +16,5 @@
   .commentbody
     -unless comment.in_reply_to_seqno.nil? || comment.in_reply_to_seqno == 0
       %p.reply In reply to comment no. #{comment.in_reply_to_seqno}:
-    %p #{comment.body}
+    %p #{h comment.body}
   =render 'common/commentfoot', :object => comment

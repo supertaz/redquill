@@ -1,3 +1,5 @@
--if current_user && (current_user.has_role? 'poster')
+-if current_user && (current_user.is_poster? || current_user.is_admin?)
   %p
     =link_to 'Create a new post', new_post_url
+  %p
+    =link_to 'Show drafts', list_drafts_url
