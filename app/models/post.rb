@@ -20,9 +20,35 @@ class Post < ActiveRecord::Base
   named_scope :by_age, {:conditions => ["posts.draft = 'f'"], :order => "posts.id DESC"}
   named_scope :recent, {:conditions => ["posts.draft = 'f'"], :order => "posts.id DESC", :limit => 10}
   named_scope :by_year, lambda { |year| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
-  named_scope :by_month, lambda { |year, month| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-%%'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
-  named_scope :by_slug, lambda { |slug| {:conditions => ["posts.draft = 'f' AND title_hash = ?", Digest::MD5.hexdigest(slug)], :include => [:poster, :tags, :comments]}}
-  named_scope :by_date, lambda { |year, month, day| {:conditions => ["posts.draft = 'f' AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}'"], :order => "posts.id DESC", :include => [:poster, :tags, :comments]}}
+  named_scope :by_month, lambda { |year, month|
+                    {
+                            :conditions => [
+                                    "posts.draft = 'f'
+                                     AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-%%'"
+                            ],
+                            :order => "posts.id DESC", 
+                            :include => [:poster, :tags, :comments]
+                    }
+  }
+  named_scope :by_slug, lambda { |slug|
+                    {
+                            :conditions => [
+                                    "posts.draft = 'f' AND title_hash = ?",
+                                    Digest::MD5.hexdigest(slug)
+                            ],
+                            :include => [:poster, :tags, :comments]
+                    }
+  }
+  named_scope :by_date, lambda { |year, month, day|
+                    {
+                            :conditions => [
+                                    "posts.draft = 'f'
+                                     AND local_date like '#{year}-#{month.to_s.rjust(2, '0')}-#{day.to_s.rjust(2, '0')}'"
+                            ],
+                            :order => "posts.id DESC",
+                            :include => [:poster, :tags, :comments]
+                    }
+  }
   named_scope :by_slug_and_date, lambda { |slug, year, month, day|
                     {
                             :conditions => [
@@ -49,7 +75,7 @@ class Post < ActiveRecord::Base
   end
 
   def publish!
-    now = Time.now.getlocal
+    now = Time.zone.now
     self.local_date = "#{now.year}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
     self.published_at = now
     self.short_url=SiteBitly.shorten(self.permanent_url).short_url
@@ -65,27 +91,25 @@ class Post < ActiveRecord::Base
 
   def self.counts_by_year
     years = Hash.new
-    start = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
-    (start..DateTime::now().year).each do |year|
+    start = Post.by_age.last.published_at.year
+    Time.zone.now.year.downto(start).each do |year|
       years[year.to_s] = Post.by_year(year).count
     end
     years
   end
 
   def self.counts_by_month
-    months = Hash.new
+    months = Array.new
     unless Post.count == 0
-      startyear = Post.by_age.last.local_date.gsub(/-.*-.*$/, '').to_i
-      (startyear..DateTime::now().year).each do |year|
-        months[year] = [Post.by_year(year).count]
-        monthcount = 1
-        (1..12).each do |month|
+      startyear = Post.by_age.last.published_at.year
+      yearcount = 0
+      Time.zone.now.year.downto(startyear).each do |year|
+        months[yearcount] = {year => [Post.by_year(year).count]}
+        12.downto(1) do |month|
           count = Post.by_month(year, month).count
-          if count > 0
-            months[year][monthcount] = {DateTime::MONTHNAMES[month] => count}
-            monthcount += 1
-          end
+          months[yearcount][year][13 - month] = {DateTime::MONTHNAMES[month] => count}
         end
+        yearcount += 1
       end
     end
     months

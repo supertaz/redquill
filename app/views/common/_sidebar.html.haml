@@ -18,11 +18,15 @@
     .secthead
       Archive
     .sectbody
-      -counts.each do |year, data|
-        .year=link_to "#{year} (#{data[0]})", show_posts_url(:year => year, :month => nil, :day => nil, :slug => nil)
-        -data[1..data.length - 1].each do |month|
-          -month.each do |name, count|
-            .month=link_to "#{name} (#{count})", show_posts_url(:year => year, :month => DateTime::MONTHNAMES.index(name), :day => nil, :slug => nil)
+      -counts.each do |yearhash|
+        -yearhash.each do |year, data|
+          -unless data[0] == 0
+            .year=link_to "#{year} (#{data[0]})", show_posts_url(:year => year, :month => nil, :day => nil, :slug => nil)
+            -data[1..data.length - 1].each do |month|
+              -unless month.nil?
+                -month.each do |name, count|
+                  -unless count == 0
+                    .month=link_to "#{name} (#{count})", show_posts_url(:year => year, :month => DateTime::MONTHNAMES.index(name), :day => nil, :slug => nil)
 -unless Post.tag_counts.length < 1
   .section
     .secthead

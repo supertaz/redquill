@@ -9,7 +9,7 @@
         #{DEFAULT_SITE_NAME} - #{DEFAULT_TITLE}
     %link{ :rel=>'shortcut icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
     %link{ :rel=>'icon', :href=>'/favicon.ico', :type=>'image/vnd.microsoft.icon'}
-    = auto_discovery_link_tag(:atom, '/posts.atom', :title => 'DevKoans Atom Feed')
+    = auto_discovery_link_tag(:atom, :url => '/posts.atom', :title => 'DevKoans Atom Feed')
     = yield :before_default_js
     = javascript_include_tag 'jquery-1.3.2.min', 'application-config', 'application', :cache => 'cache/all'
     = yield :after_default_js
