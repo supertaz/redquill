@@ -6,7 +6,7 @@
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
   :key         => '_redquill_session',
-  :secret      => 'youneedarandomsecrethere'
+  :secret      => 'youneedarandomsecretherebecauseotherwiseyoursessionswillbeeasilyhacked'
 }
 
 # Use the database for sessions instead of the cookie-based default,
