@@ -37,8 +37,8 @@
           #identityarea
             .nest
               %h1
-                ="<span class='titlecolor'>Dev</span>Koans"
-              .tagline A thought-provoking blog of things I know might be true
+                #{DEFAULT_SITE_NAME}
+              .tagline #{DEFAULT_TAGLINE}
           #usernav
     #live_color
       .container
@@ -51,6 +51,8 @@
     #foot_color
       .container
         #footer
-          Design and all contents of this website &copy; 2009#{DateTime::now().year == 2009 ? '' : " - #{DateTime::now().year}"} Jonathan D. Mischo  All rights reserved.
-      .version{:style => 'font-size:.6em;color:#999;padding-bottom:2px;padding-right:2px;float:right'}
-        #{APP_VERSION}
+          All contents of this website &copy; #{BLOG_ORIGIN_YEAR}#{DateTime::now().year == BLOG_ORIGIN_YEAR ? '' : " - #{DateTime::now().year}"} #{BLOG_OWNER_NAME}  All rights reserved.
+          .version{:style => 'font-size: 1.2em;padding-top:1em'}
+            Powered by RedQuill
+      .vtag{:style => 'font-size:.7em;color:#999;padding-bottom:5px;padding-right:5px;float:right'}
+        RedQuill v.#{APP_VERSION}

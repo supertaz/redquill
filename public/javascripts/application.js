@@ -50,7 +50,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    var tweetsURL = "http://twitter.com/status/user_timeline/jmischo.json?count=10&callback=?";
+    var tweetsURL = "http://twitter.com/status/user_timeline/" + ownerTwitterAccount + ".json?count=10&callback=?";
      $.getJSON(tweetsURL, function(data){
           $.each(data, function(i, item) {
               $("img#twitterpic", $("#tweetstream"))

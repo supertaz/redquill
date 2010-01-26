@@ -5,11 +5,7 @@
     %p
       =link_to 'Latest Entries', post_url(:id => 'all')
     %p
-      %a{:href=>user_path(owner_user)}
-        Who
-        %i
-          %b is
-        this guy anyway?
+      %a{:href=>user_path(owner_user)} About Me
     %p
       %a{:href=>user_email_url(owner_user)}Contact Me
 -counts = counts_for_archive
@@ -40,5 +36,5 @@
   .sectbody{:id => 'tweetstream'}
     %p.twitter
       %img#twitterpic{:align => 'left', :style => 'display:none'}
-      %a{:href => "http://twitter.com/jmischo"} I'm @jmischo on Twitter. Click here to read my tweets or follow me!
+      %a{:href => "http://twitter.com/#{owner_user.twitter_username}"} I'm @#{owner_user.twitter_username} on Twitter. Click here to read my tweets or follow me!
     .clear
