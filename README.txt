@@ -1,3 +1,23 @@
+Some history
+============
+
+Please note that this project started off as a simple example for rails newbies, largely as a practice-what-you-preach
+exercise.  In helping countless people get started with Rails, one of the first projects I (and other Rails developers)
+recommend is to create a simple blog.  As I incorporated more and more examples into the platform, I decided to do two
+things:
+
+1) Open-source the platform as an example
+2) Add code coverage that's sorely lacking
+
+#1 is done (obviously), but #2 is moving very slowly, as my closed-source client projects take precedence.  If you'd
+like to contribute cucumber or RSpec tests to this project, please send a pull request -- I'm very happy to have
+help, and it's a great way for you to learn about these testing frameworks and BDD.
+
+
+
+Installation
+============
+
 In order for this application to work properly, there are two files that you need to create, with the following defined
 in them.  Make sure you create these and fill in the appropriate fields, otherwise you won't get the results you're
 expecting (in fact, everything will break).
