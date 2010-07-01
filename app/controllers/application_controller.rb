@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :page_title
   helper_method :owner_user
-  helper_method :redirect_back_or_default
-  helper_method :store_location
-  helper_method :require_user
-  helper_method :require_no_user
 
 private
 
