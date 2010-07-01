@@ -2,7 +2,7 @@ unless defined? RAILS_ENV
   RAILS_ENV = ENV['RAILS_ENV'] || 'production'
 end
 
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -24,17 +24,18 @@ Rails::Initializer.run do |config|
 
   config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
 
-  config.gem 'haml', :version => '>=2.2.15'
+  config.gem 'haml', :version => '>=3.0.13'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>=2.3.11'
   config.gem 'authlogic', :version => '>=2.1.3'
   config.gem 'syntax', :version => '>= 1.0.0'
   config.gem 'maruku', :version => '>= 0.6.0'
-  config.gem 'acts-as-taggable-on', :version => '>=1.0.12', :source => "http://gemcutter.org"
+  config.gem 'acts-as-taggable-on', :version => '>=2.0.6', :source => "http://gemcutter.org"
   config.gem 'bitly', :version => '>=0.3.2'
   config.gem 'ambethia-recaptcha', :version => '>=0.2.2', :lib => "recaptcha/rails"
   config.gem 'nokogiri', :version => '>=1.3.3'
   config.gem 'sanitize', :version => '>=1.1.0'
   config.gem 'gravtastic', :version => '>= 2.1.3'
+  config.gem 'searchlogic'
 
   config.time_zone = 'Central Time (US & Canada)'
 
